@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Limelight&family=Raleway:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=KoHo:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html{
+    font-size: 15px;
+}
+
+body{
+    background: rgb(105,176,154);
+    background: radial-gradient(circle, rgba(105,176,154,1) 0%, rgba(57,76,80,1) 100%);
+}
+
+input{
+    border: none;
+}
+
+.func{
+    position: absolute;
+    bottom: 0;
+    min-width: 93%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;     
+    transition: 0.6s;
+    opacity: 0;
+    transition-property: opacity, transform;
+    font-family: 'Raleway';
+}
+
+.func .fa{
+    margin: 0 15px;
+    position: relative;
+    color: rgb(189, 255, 235);
+}
+
+#categories{
+    display: flex;
+    font-family: 'Poppins';
+    width: auto;
+    height: auto;
+    padding: 0.5em;
+    transition: 0.6s ease;
+}
+
+.category {
+    background-color: rgb(57, 133, 89);
+    color: rgb(155, 255, 197);
+    padding: 0.5em;
+    margin: 0.2em 0.4em;
+    box-sizing: content-box;
+    border-radius: 25px;
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.4);
+}
+
+.lpost:hover .func{
+    transform: translateY(-20px);
+    opacity: 1;
+}
+
+#top_bar {
+    position: fixed;
+    width: 100%;
+    /* display: flex; */
+    z-index: 2;
+    font-family: 'Comfortaa';
+    padding: 0 0.8em;
+    padding-top: 1.4rem;
+    /* justify-content: space-between; */
+    color: rgb(59, 167, 167);
+}
+
+.headerdiv{
+    position: relative;
+    display: flex;
+}
+
+.headerdiv img{
+    margin-right: 0.5em;
+    border-radius: 50%;
+    position: relative;
+    bottom: 12px;
+    height: 48px;
+    min-width: 48px;
+    width: 48px;
+}
+
+#header{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: -1.4em;
+}
+
+#frac{
+    position: relative;
+}
+
+#top_bar::before {
+    position: absolute;
+    background-color: rgb(147, 235, 216);
+    opacity: 0.87;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+}
+nav ul{
+    list-style-type: none;
+    z-index: 8;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding-inline-start: 0;
+    padding: 1em 0.1em;
+}
+
+nav {
+    display: none;
+}
+
+nav li{
+    margin-left: 0;
+}
+
+#top_bar .fa {
+    z-index: 10;
+    position: absolute;
+    display: inline-flex;
+    color: rgba(0, 0, 0, 0.445);
+    right: 1%;
+}
+
+#header h2{
+    position: relative;
+    max-width: 70%;
+    letter-spacing: 0.00000005px;
+    color: rgb(51, 85, 85)
+}
+
+.banner{
+    width: 100%;
+}
+
+footer{
+    position: relative;
+    width: 100%;
+    padding-top: 0.5em;
+    font-family: 'Comfortaa';
+    color: white;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+footer h4{
+    font-size: 1.3rem;
+}
+
+footer a{
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover{
+    color: aqua;
+}
+
+#bot-nav{
+    display: block;
+    margin-bottom: 1em;
+}
+
+@media only screen and (min-width: 768px) {
+    .screen {
+        display: block;
+        position: absolute;
+        right: 1%;
+    }
+
+    .mobile{
+        display: none;
+    }
+
+    .mobile ul{
+        display: none;
+    }
+
+    .banner{
+        width: 100%;
+        height: 30vh;
+        object-fit: cover;
+        object-position: center;
+    }
+
+
+    .screen ul{
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        list-style-type: none;
+        justify-content: center;
+    }
+
+    #top_bar .fa{
+        display: none;
+    }
+
+    .func .fa{
+        display: flex;
+        position: relative;
+        color: rgb(189, 255, 235);
+    }
+
+    nav a{
+        margin-left: 1.5em;
+        font-weight: 500;
+        text-decoration: none;
+        font-size: 1.2em;
+        color: aliceblue;
+    }
+
+    nav a:hover{
+        color: rgb(3, 32, 39);
+        transition: 0.4s ease;
+        cursor: pointer;
+    }
+
+    nav a::after{
+        color: darkcyan;
+    }
+
+    #bot-nav{
+        margin: 0.7em;
+        display: flex;
+        width: 80%;
+        justify-content: space-around;
+    }
+ }
+
+ @media only screen and (max-width: 768px) and (orientation: landscape) {
+    .banner{
+        width: 100%;
+        height: 50vh;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+

@@ -1,0 +1,167 @@
+#horiz{
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    background-position: center;
+    width: 100%;
+    min-height: 60%;
+    overflow: hidden;
+    filter: blur(0);
+}
+
+#horiz::before{
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(../images/fractal.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#showcase{
+    display: flex;
+    justify-content: center;
+}
+
+#sh-text{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    border: 4px rgba(255, 255, 255, 0.582) solid;
+    filter: brightness(100%);
+}
+
+.sh-container{
+    opacity:1;
+    width: 100%;
+    padding: 20rem 10rem;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    transition: 0.5s ease;
+    color: rgb(37, 255, 190);
+    background-image: url(../images/fractal.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 40% 40%;
+    filter: brightness(100%);
+}
+
+/* .sh-container:hover{
+    transition: 0.5s ease;
+} */
+
+.sh-container h1{
+    font-family: 'Abril Fatface';
+    line-height: 1.1em;
+    font-size: 68px;
+}
+
+.sh-container p{
+    font-family: 'Roboto Slab';
+    font-size: 1.7em;
+    color: rgb(185, 255, 234)
+}
+
+#sht-text .btn {
+	line-height: 50px;
+	height: 50px;
+	text-align: center;
+    width: 30%;
+}
+
+.explore {
+	color: #FFF;
+    font-family: 'Raleway';
+    font-weight: 600;
+    font-size: 1.4em;
+	transition: all 0.5s;
+	position: relative;
+    z-index: 5;
+    margin: 0 18%;
+    text-transform: uppercase;
+	cursor: pointer;
+    padding: 0.7em 1.4em;
+    display: flex;
+    justify-content: center;
+}
+
+.explore::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-color: rgba(2, 247, 255, 0.4);
+	transition: all 0.3s;
+}
+
+.explore:hover::before {
+	opacity: 0 ;
+	transform: scale(0.5,0.5);
+}
+
+.btn a{
+    position: relative;
+    color: #FFF;
+    text-decoration: none;
+    z-index: 15;
+}
+
+.btn a:hover{
+    color: rgb(164, 231, 209);
+}
+
+.explore::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	opacity: 0;
+	transition: all 0.3s;
+	border: 2px solid rgba(255,255,255,0.5);
+	transform: scale(1.2,1.2);
+}
+
+.explore:hover::after {
+	opacity: 1;
+	transform: scale(1,1);
+}
+
+@media only screen and (orientation: portrait){   
+    .sh-container{
+        padding: 10rem 1rem;
+        position: relative;
+        top: 0em;
+    }
+
+    .sh-container h1{
+        line-height: 1.1em;
+        font-size: 57px;
+    }
+    
+    .sh-container p{
+        font-size: 1.2em;
+    }
+
+    .btn{
+        font-size: 1em;
+    }
+    
+  }
+
+
+
+  

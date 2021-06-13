@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static '/styles/carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/styles/forms.css' %}">
+{% endblock %}
+
+{% block nav-item %}
+<li class="nav-item" id="about-screen"><a href="/#contact">About</a></li>
+<li class="nav-item" ><a href="/posts">Blog</a></li>                            
+<li class="nav-item" id="about-screen"><a href="{% url 'login' %}?next={{ request.path|urlencode }}">Login</a></li>
+{% endblock %}
+
+{% block nav-mobile %}
+<li class="nav-item" id="about-mobile"><a href="/#contact">About</a></li>
+<li class="nav-item" ><a href="/posts">Blog</a></li>
+<li class="nav-item" id="about-mobile"><a href="{% url 'login' %}?next={{ request.path|urlencode }}">Login</a></li>                            
+{% endblock %}
+
+{% block content %}
+<img class="banner" src="{% static 'images/fractal.png' %}" alt="cedaarlogo">
+<div id="signup" class="hand">
+    <h1>Register</h1>
+    <br>
+    <div class="center">
+        <form method="post">
+            {% csrf_token %}
+            {% for field in registration_form %}
+            <p>
+                {{field.label_tag}}
+                <br>
+                {{field}}
+
+                <br>
+                {% if field.help_text %}
+                <small style="color:rgb(154, 219, 194); font-size:11px;">{{field.help_text}}</small>
+                {% endif %}
+    
+                {% for error in field.errors %}
+                <small style="color:rgb(255, 137, 137);">{{error}}</small>
+                {% endfor %}
+            </p>
+            <br>
+            {% endfor %}
+            <input type="hidden" name="next" value="{{request.GET.next}}" />
+            <div id="create-button">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- <div id="confirm">
+    <div class="hand">
+        <h3>You will receive a confirmation link shortly to your email</h3>
+    </div>
+</div> -->
+{% endblock %}
+
+{% block vuescript %}
+<!-- <script>
+    $(document).ready(function(){
+        $('#create-button').click(function(){
+            $('form p').toggle();
+            $('#confirm').toggle();
+        });
+    });
+</script> -->
+{% endblock %}

@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}'{{post.subject}}'{% endblock %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static '/styles/page.css' %}">
+{% endblock %}
+
+{% block nav-item %}
+<li class="nav-item" id="about-screen"><a href="/#contact">About</a></li>
+<li class="nav-item" ><a href="/posts">Blog</a></li>           
+{% if request.user.is_authenticated %}                            
+<li class="nav-item" id="about-screen"><a href="{% url 'logout' %}?next={{ request.path|urlencode }}">Logout</a></li>
+{% else %}
+<li class="nav-item" id="about-screen"><a href="{% url 'login' %}?next={{ request.path|urlencode }}">Login</a></li>
+<li class="nav-item" id="about-screen"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>
+{% endif %}
+{% endblock %}
+{% block nav-mobile %}
+<li class="nav-item" id="about-mobile"><a href="/#contact">About</a></li>
+<li class="nav-item" ><a href="/posts">Blog</a></li>      
+{% if request.user.is_authenticated %}                            
+<li class="nav-item" id="about-mobile"><a href="{% url 'logout' %}?next={{ request.path|urlencode }}">Logout</a></li>
+{% else %}
+<li class="nav-item" id="about-mobile"><a href="{% url 'login' %}?next={{ request.path|urlencode }}">Login</a></li>
+<li class="nav-item" id="about-mobile"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+<section id="blog-content">
+    {% if post.thumbnail %}
+    <img id="back" src="{{post.thumbnail}}">
+    {% else %}
+    <img id="back" src="https://mnfi.anr.msu.edu/element-images/1000/Great-Lakes-Marsh-3130.jpg">
+    {% endif %}
+    <div id="blog-pic">
+        {% if post.thumbnail %}
+        <img src="{{post.thumbnail}}">
+        {% else %}
+        <img src="https://mnfi.anr.msu.edu/element-images/1000/Great-Lakes-Marsh-3130.jpg">
+        {% endif %}
+    </div>
+    <div class="contents">
+        <div class="det">
+            <h1>{{ post.subject }}</h1>
+            <div class="funct">
+                {% if post.author == request.user %}
+                <a href="{% url 'postedit' post.pk %}" style="text-decoration:none;"><i class="fa fa-edit" style="font-size:24px;"></i></a>
+                <a href="{% url 'postdel' post.pk %}" style="text-decoration:none;"><i class="fa fa-trash" style="font-size:24px;"></i></a>                            
+                {% endif %}
+                <form action="{% url 'like_post' post.pk %}" method="POST">{% csrf_token %}<button class="react" type="submit" name="post_id" value="{{ post.pk }}"><i class="fa fa-thumbs-up" style="font-size:24px;"><small style="font-family:sans-serif;margin-left:1px;">{{ post.likes.count }}</small></i></button></form>
+                <button class="react" type="submit" name="post_id" value="{{ post.pk }}"><i class="fa fa fa-comment" style="font-size:24px;"><small style="font-family:sans-serif;margin-left:1px;">{{ comments.count }}</small></i></button>
+            </div>                
+            <p>By {{ post.author_str }} | {{ post.timestamp }}</p>
+        </div>
+        <p>{{ post.content|safe }}</p>
+        <br>
+        <div id="categories">
+            {% for category in post.category.all %}
+            <div class="category">{{ category }}</div>
+            {% endfor %}
+        </div>
+        <br>  
+        <hr>
+        <br>
+        <div class="functe">
+            {% if post.author == request.user %}
+            <a href="{% url 'postedit' post.pk %}" style="text-decoration:none;"><i class="fa fa-edit" style="font-size:24px;"></i></a>
+            <a href="{% url 'postdel' post.pk %}" style="text-decoration:none;"><i class="fa fa-trash" style="font-size:24px;"></i></a>                            
+            {% endif %}
+            <form action="{% url 'like_post' post.pk %}" method="POST">{% csrf_token %}<button class="react" type="submit" name="post_id" value="{{ post.pk }}"><i class="fa fa-thumbs-up" style="font-size:24px;"><small style="font-family:sans-serif;margin-left:1px;">{{ post.likes.count }}</small></i></button></form>
+        </div>
+        <br>
+        <br>       
+        <div class="comments">
+            <h2>Write us a comment?</h2>
+            <br>
+            <form method="post" action="{% url 'postview' post.pk %}">
+                {% csrf_token %}        
+                {{ form.as_p }}
+                <button class="react" type="submit" name="comment-btn" style="padding: 0.5em;"><i class="fa fa fa-comment" style="font-size:20px;"><small style="font-family:sans-serif;margin-left:1px;">Post Comment</small></i></button>
+            </form>
+            <br>
+            <p>Note that the comments will have to be viewed by the author before posting to moderate</p> <br><br>
+            <h2>Comments</h2>
+            <br>
+            {% if comments.count != 0 %}
+                {% for comment in comments %}
+                <div class="comment">
+                    <h4> {{comment.commenter}} at {{comment.timestamp}} </h4> <hr>
+                    <p>"{{ comment.comment }}"</p>
+                    {% if request.user.is_admin %}
+                    <div class="functe">
+                        <form action="{% url 'commentdel' pk=post.pk ck=comment.pk %}" method="POST">{% csrf_token %}<button class="react" type="submit"><i class="fa fa-trash" style="font-size:24px;"></i></button></form>
+                        {% if comment.viewable %}
+                        <form action="{% url 'reveal' post.pk comment.pk %}" method="POST">{% csrf_token %}<button class="react" type="submit" name="post_id" value="{{ post.pk }}"><i class="fa fa-eye-slash" style="font-size:24px"></i></button></form>
+                        {% else %}
+                        <form action="{% url 'reveal' post.pk comment.pk %}" method="POST">{% csrf_token %}<button class="react" type="submit" name="post_id" value="{{ post.pk }}"><i class="fa fa-eye" style="font-size:24px"></i></button></form>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            {% else %}
+            <p>No comments are displayed as of now</p> 
+            {% endif %}
+        </div>
+        <!-- Yet to add comments -->
+    </div>
+</section>
+{% endblock %}
+
+<footer display="position: absolute;bottom: 0;">
+    {% block footer %}
+    {% endblock %}
+    <p style="text-align: center;">
+        Designed by Samuel Tom Joseph @ 2021, Credits to wildflower1555 for the source image
+    </p>
+</footer>
+
+{% block vuescript %}
+<script>
+    $(window).resize(function() {
+        // This will fire each time the window is resized:
+        if($(window).width() <= 768) {
+            $store = $('.funct').detach();
+            $('.det p').append($store);
+        } else {
+            $store = $('.funct').detach();
+            $('.det p').before($store);
+        }
+    }).resize();
+</script>
+<script>
+    $(document).ready(function(){
+        $('.contents img').parent().css("display","flex");
+        $('.contents img').parent().css("justify-content","center");
+        $('.contents img').parent().css("flex-wrap","wrap");
+        $('.contents img').parent().css("object-fit","contain");
+        $('.contents img').parent().css("object-position","center");
+        $('.contents img').css("height","auto");
+    });
+//    if ( window.history.replaceState ) {
+//        window.history.replaceState( null, null, window.location.href );
+//      }
+</script>
+{% endblock %}

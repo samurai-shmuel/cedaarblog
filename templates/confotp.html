@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Email Config{% endblock %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static '/styles/carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/styles/forms.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<img class="banner" src="{% static 'images/fractal.png' %}" alt="cedaarlogo">
+<div id="signup" class="hand">
+    <h1>Activation Status</h1>
+    <br>
+    <br>
+    <div class="center" style="height: 40vh;">
+        <div class="confirmation">
+            {% if success %}
+            <h4 style="color:rgb(113, 192, 133); font-size: 24px;">{{ user }}, your account is confirmed!</h4>
+            {% else %}
+            <h4 style="color:rgb(221, 140, 140); font-size: 24px;">Error, invalid token!</h4>
+            {% endif %}    
+        </div>
+    </div>
+</div>
+{% endblock %}

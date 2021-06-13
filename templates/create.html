@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Create{% endblock %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static '/styles/creator.css' %}">
+{% endblock %}
+
+{% block nav-item %}
+<li class="nav-item" ><a href="/posts">Blog</a></li>                            
+{% endblock %}
+{% block nav-mobile %}
+<li class="nav-item" ><a href="/posts">Blog</a></li>                            
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="create-form">
+        <div id="create-head">
+            <h1>Create Post</h1>
+        </div>
+        <div class="form-flex">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                <div id="create-button">
+                    <button type="submit">Post</button>
+                </div>
+            </form>    
+        </div>
+    </div>    
+</div>
+{% endblock %}
+
+{% block vuescript %}
+<script>
+    $(document).ready(function(){
+        $('#cke_id_content').css("width","100%");
+    });
+</script>
+{% endblock %}

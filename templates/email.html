@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Confirmation</title>
+    <style>
+        .email h1{
+            padding: 1em 1em;
+            background-color:rgb(142, 255, 199);
+            font-size: 2rem;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            color: rgb(22, 134, 101);
+        }
+        
+        .email{
+            background: rgb(105,176,154);
+            background: radial-gradient(circle, rgba(105,176,154,1) 0%, rgba(57,76,80,1) 100%);
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            text-align: center;
+            color: rgb(214, 255, 235);
+        }
+        
+        .email h2{
+            padding: 2em auto;
+        }
+        
+        .email a{
+            text-decoration: none;
+            color: aquamarine;
+        }
+        
+        .heath{
+            position: relative;
+            display: flex;
+            padding: 0 45%;
+        }
+        
+        .heath img{
+            border-radius: 50%;
+            height: 10em;
+            min-width: 10em;
+            width: 10em;
+        }        
+    </style>
+</head>
+<body>
+    <div class="email">
+        <h1>You are almost there, {{ user }}!</h1><br>
+        <h2>Please click <a href="{{ link }}">here</a> to confirm your account at CedaarBlog</h2>
+        <h2>The token expires on {{ expiry|time:"h:i a" }}</h2>
+        <div class="heath">
+            <img class="avatar" src="https://i.ibb.co/q0fKZsC/logo.png" alt="cedaarlogo">
+        </div>
+        <br><br><br>   
+    </div>
+</body>
+</html>

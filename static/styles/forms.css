@@ -1,0 +1,91 @@
+form{
+    font-size: 1.5em;
+    color:rgb(85, 226, 207);
+    font-family: 'Raleway';
+    font-weight: bold;
+}
+
+form input{
+    padding: 2px;
+    font-size: 16px;
+    font-family: 'Poppins';
+    width: 100%;
+}
+
+form small{
+    font-weight: normal;
+}
+
+.delete-form{
+    text-align:center;
+    padding: 1.4em;
+}
+
+.center{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.confirmation{
+    font-size: 20px;
+    font-family: 'Raleway';
+}
+
+#confirm{
+    display: none;
+    font-size: 1.5em;
+    font-family: 'Raleway';
+    color: #fff;
+}
+
+button{
+    width: 14vh;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: 'Raleway';
+    background-color: rgb(71, 169, 255);
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s ease;
+}
+
+#create-button{
+    display: flex;
+    justify-content: center;
+}    
+
+#create-button button{
+    width: 6em;
+}    
+
+
+button:hover{
+    color: rgb(58, 73, 73);
+}
+
+.cancel{
+    width: 30%;
+    font-size: 1em;
+    font-family: 'Raleway';
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s ease;
+    margin-left: 15px;
+    background-color:rgb(109, 175, 144);
+}
+
+button:hover a{
+    text-decoration: none;
+    color: rgb(197, 255, 236);
+}
+
+a::after{
+    color: rgb(182, 236, 218);
+}
+

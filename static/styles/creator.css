@@ -1,0 +1,125 @@
+.container{
+    padding-top: 5em;
+}
+
+.create-form{
+    font-size: 20px;
+    display: block;
+    padding: 1em 0.9em;
+}
+
+.create-form h1{
+    font-family: 'Raleway';
+    font-size: 2em;
+    color: rgb(125, 253, 230)
+}
+
+#create-head{
+    display: flex;
+    justify-content: center;
+}
+
+form p{
+    margin: 1em 0;
+}
+
+form input, select{
+    border: none;
+    width: 60%;
+    font-size: 0.8em;
+    font-family: 'Merriweather';
+    padding: 5px;
+    margin-left: 3em;
+    resize: auto;
+    background-color: rgb(209, 230, 248);
+}
+
+form textarea{
+    border: none;
+    font-size: 0.8em;
+    font-family: 'Merriweather';
+    padding: 5px;
+    resize: auto;
+    background-color: rgb(209, 230, 248);
+    width: 100%;
+    margin-right: 3em;
+    appearance: none;
+    margin: 0.5em 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    transition: 0.6s ease;
+}
+
+a:hover{
+    text-decoration: none;
+    color: rgb(3, 121, 81);
+}
+
+a::after{
+    color: rgb(36, 173, 128);
+}
+
+
+form select{
+    border: none;
+    background-color: rgb(209, 230, 248);
+    padding: 3px;
+}
+
+form label{
+    color: aquamarine;
+    font-family: 'Raleway';
+}
+
+.form-flex{
+    display: flex;
+    justify-content: center;
+}
+
+form{
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+#create-button{
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    width: 27%;
+    font-size: 1.2em;
+    background-color: rgb(27, 113, 189);
+    color: #fff;
+    border-radius: 4px;
+    margin-left: 0.2em;
+    padding: 5px;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover{
+    background-color:  rgb(54, 149, 233)
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px){   
+    .form-flex{
+        padding: 0 3em;
+    }
+
+    .create-form{
+        padding: 1em 2em;
+    }
+
+    button{
+        width: 10%;
+    }
+  }
+  
+

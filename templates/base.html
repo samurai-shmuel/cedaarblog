@@ -1,0 +1,89 @@
+{% load static %}
+{% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cedaar - {% block title %}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static '/styles/basestyle.css' %}">
+    {% block style %}
+    {% endblock %}
+    </head>
+<body>
+    <div id="app">
+        <section id="frac">
+            <div id="top_bar">
+                <div class="headerdiv">
+                    <img class="avatar" src="{% static 'images/logo.png' %}" alt="cedaarlogo">
+                    <div id="header"><h2 v-resize-text="{ratio:1, minFontSize: '20px', maxFontSize: '25px'}">Cedaarblog</h2></div>
+                    <i class="fa fa-navicon" id="navicon" style="font-size:26px;"></i>
+                    <nav class="animate__animated animate__fadeDown screen">
+                        <ul>
+                            <li class="nav-item" ><a href="/">Home</a></li>
+                            {% block nav-item %}
+                            
+                            {% endblock %}
+                        </ul>    
+                    </nav>    
+                </div>
+                <nav class="animate__animated animate__fadeDown mobile">
+                    <ul>
+                        <li class="nav-item" ><a href="/">Home</a></li>
+                        {% block nav-mobile %}
+                            
+                        {% endblock %}
+                    </ul>    
+                </nav>
+                {% block fixed %}
+                {% endblock %}
+            </div>
+            {% block content %}
+            {% endblock %}
+            <footer>
+                {% block footer %}
+                {% endblock %}
+                <p style="text-align: center;">
+                    Designed by Samuel Tom Joseph @ 2021, Credits to wildflower1555 for the <a href="https://wall.alphacoders.com/big.php?i=716252&lang=English">source image</a>
+                </p>
+            </footer>
+        </section>        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://unpkg.com/vue-resize-text"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        import ResizeText from 'vue-resize-text'
+        export default {
+            directives: {
+                ResizeText
+            }
+        };
+      </script>
+    {% block vuescript %}
+    {% endblock %}
+    <script>
+        $(document).ready(function(){
+            $(window).resize(function() {
+                // This will fire each time the window is resized:
+                if($(window).width() <= 768) {
+                    $("#navicon").click(function(){
+                        $(".mobile").toggle(300, 'linear');
+                    });        
+                } else {
+                    // if smaller
+                    $('.mobile').hide();
+                }
+            }).resize();
+        });
+    </script>
+</body>
+</html>

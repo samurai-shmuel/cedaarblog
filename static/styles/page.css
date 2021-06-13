@@ -1,0 +1,258 @@
+#blog-content{
+  justify-items: center;
+}
+
+#blog-pic{
+display: flex;
+justify-content: center;
+}
+
+#blog-pic img{
+  width: auto;
+  margin: 4.5em 10vw;
+  height: 90vh;
+  object-fit: cover;
+  overflow: hidden;
+  object-position: top;
+}
+
+#back{
+  position: absolute;
+  z-index: -3;
+  width: 100%;
+  max-height: 130vh;
+  opacity: 0.52;
+  filter: blur(8px);
+}
+
+footer{
+  display: none;
+}
+
+.contents{
+  font-family: 'Merriweather';
+  font-size: 15px;
+  display: block;
+  padding: 15px;
+  background-color: rgba(202, 217, 230, 0.87);
+  position: absolute;
+  top: 77vh;
+  margin: 0 6em;
+}
+
+h2{
+  font-size: 1.2em;
+}
+
+.contents p{
+  text-align: justify;
+  line-height: 1.4em;
+}
+
+.det p{
+  font-family: 'Raleway';
+  font-size: 18px;
+  text-transform: italic;
+  text-align: left;
+  font-weight: 900;
+  color:rgb(20, 66, 49);
+  margin-bottom: 1.5em;
+}
+
+.contents h1{
+  font-family: 'Limelight';
+  text-align: left;
+  font-size: 2.3em;
+  color: rgb(46, 80, 67)
+}
+.funct{
+  display: flex;
+  position: relative;
+  float: right;
+  font-family: 'Poppins';
+}
+
+.functe{
+  display: flex;
+  position: relative;
+  font-family: 'Poppins';
+}
+
+.react{
+  background-color: transparent;
+  padding:3px 0;
+  position: relative;
+  top: -4px;
+  margin-right: 0.5em;
+  border-color: rgb(32, 126, 94);
+  border-style: solid;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: 0.1s ease-in-out;
+}
+
+.comments .react{
+  margin: 2rem 0.9rem;
+  top: 0;
+}
+
+.comment form .react{
+  margin: 0.4em; 
+}
+
+.react:hover{
+  background-color: rgba(224, 255, 234, 0.87);
+  box-shadow: 1px 2px 1px 2px rgba(0,0,0,0.33);
+}
+
+.errorlist{
+  list-style: none;
+  text-align: left;
+  margin-block-start: 0%;
+  padding-inline-start: 0;
+  color: rgb(209, 104, 104);
+}
+
+.fa-edit, .fa-trash, .fa-thumbs-up, .fa-comment, .fa-eye, .fa-eye-slash{
+  display: flex;
+  margin: 0 0.3em;
+    position: relative;
+    color: rgb(42, 122, 98);
+    z-index: 0;
+}
+
+.fa small{
+  font-family: 'Raleway';
+}
+
+.contents img{
+  max-width: 95%;
+  height: auto;
+}
+
+.comments h2{
+  font-family: 'Roboto';
+  font-size: 2em;
+  color: rgb(86, 136, 10)
+}
+
+.comments form{
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 1vw;
+}
+
+.comment{
+  line-height:1.7em;
+  margin-left: 1.2em;
+  padding: 1em;
+  font-family: 'Poppins';
+  margin-bottom: 0.5em;
+  border-left: solid green 5px;
+  background-color: rgb(202, 224, 215);
+  box-shadow: 13px 10px 13px 1px rgba(0,0,0,0.33);
+-webkit-box-shadow: 13px 10px 13px 1px rgba(0,0,0,0.33);
+-moz-box-shadow: 13px 10px 13px 1px rgba(0,0,0,0.33);
+}
+
+form label{
+  display: none;
+}
+
+textarea{
+  font-size: 16px;
+  height: 100px;
+  overflow-y: scroll;
+  background-color:rgb(202, 224, 215);
+  font-family: "Poppins";
+}
+
+.comment .fa{
+  display: inline-block;
+}
+
+.comment h4{
+  font-size: 1rem;
+}
+
+@media only screen and (max-width: 768px) and (orientation: portrait) {   
+  #blog-pic{
+    position: relative;
+    top: 4.5em;
+    object-fit: contain;
+    object-position: 50% 50%;
+    padding: 0;
+  }
+
+  #blog-pic img{
+    width: 100%;
+    margin: 0;
+    overflow: visible;
+  }
+
+  .contents{
+    width: 100%;
+    padding: 15px;
+    background-color: rgba(202, 217, 230, 0.842);
+    position: absolute;
+    top: 80vh;
+    margin: 0;
+    overflow: hidden;
+    font-size: 14px;
+  }
+
+  textarea{
+    width: 84vw;
+  }
+
+  .contents h1{
+    font-size: 1.8em;
+  }
+
+  .funct{
+    margin-top: 0.6em;
+    float: none;
+ }
+
+  a {
+    text-decoration: none;
+    color: black;
+    transition: 0.6s ease;
+}
+a:hover{
+  text-decoration: none;
+  color: rgb(3, 121, 81);
+}
+
+a::after{
+  color: rgb(36, 173, 128);
+}
+
+.comments .react{
+  margin: 0.2rem;
+}
+
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px){   
+  .contents{
+    padding: 15px;
+    background-color: rgba(202, 217, 230, 0.842);
+    position: absolute;
+    top: 40vh;
+    margin: 0;
+  }
+
+  .comments .react{
+    margin: 0.2rem;
+  }
+
+}
+
+
+@media only screen and (max-width: 1060px) and (orientation: landscape) {  
+  .contents{
+      margin: 0;
+  }
+}
+

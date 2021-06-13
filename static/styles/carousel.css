@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+.hand{
+    position: relative;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: rgb(49, 75, 72);
+    border-top: 6px rgba(118, 185, 152, 0.452) ridge;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    transition: 0.6s ease;
+}
+
+a:hover{
+    text-decoration: none;
+    color: rgb(3, 121, 81);
+}
+
+a::after{
+    color: rgb(36, 173, 128);
+}
+
+#welcome{
+    background-color: rgb(60, 87, 84);
+    display: flex;
+    justify-content: center;
+    font-size: 1.3em;
+    font-family: 'Merriweather';
+    color: rgb(47, 214, 158);
+}
+
+#welcome p{
+    text-align: justify;
+    padding: 1em 3em;
+}
+
+#welcome h1{
+    text-transform: none;
+    font-family: 'Poppins';
+    font-size: 2.3em;
+}
+
+#latest{
+    display: flex;
+    padding: 1em;
+}
+
+#signup{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2em 1em;
+    padding-bottom: 2em;
+    background-color: rgb(49, 75, 72);
+}
+
+.hand h1{
+    font-family: 'Poppins';
+    text-align: center;
+    font-size: 4rem;
+    justify-content: center;
+    max-width: 100vw;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    text-transform: lowercase;
+    color:rgb(172, 214, 202);
+}
+
+#latest h1{
+    font-family: 'Poppins';
+}
+
+#contact{
+    padding-top: 1.2em;
+    display: flex;
+    flex-direction: row;
+    padding-left: 2em;
+    padding-right: 2em;
+    background-color: rgb(37, 56, 54);
+}
+
+#authors{
+    margin-right: 0;
+    max-width: 650px;
+}
+
+.author{
+    display: flex;
+    margin-bottom: 2.4em;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 600px;
+    color:rgb(17, 202, 140);
+    font-family: 'Raleway';
+    line-height: normal;
+}
+
+#con-head{
+    max-width: 80vw; 
+    margin-bottom: 2em;
+    display:flex;
+    text-align: center; 
+    align-items:center;
+}
+
+.author img{
+    vertical-align: middle;
+    width: 100px;
+    height: 100px;
+    margin: 1em;
+    border-radius: 50%;
+}
+
+.author-text {
+    width: 100%;
+    max-width: 350px;
+}
+
+.author-text p{
+    text-align: justify;
+    color:rgb(183, 238, 220);
+    font-size: 1.2em;
+}
+
+.author-text h2{
+    font-size: 2em;
+    font-family: 'Raleway';
+}
+
+.author-text h3{
+    color:rgb(238, 255, 249);
+}
+
+ @media only screen and (min-width: 768px) and (orientation: landscape) {   
+        #latest h1{
+            font-family: 'Poppins';
+            font-size: 3rem;
+            text-transform: uppercase;
+            writing-mode:vertical-lr; 
+            text-orientation:upright;
+        }
+
+        .author{
+            margin: 0.9em;
+        }
+
+        .author-text {
+            max-width: 450px;
+            padding: 1.3em;
+        }        
+
+        #contact{
+            padding-top: 0;
+        }
+
+        #con-head{
+            padding-right:5em;
+        }
+    }
+
+@media only screen and (max-width: 1368px) and (orientation: landscape)
+{
+    #latest h1{
+        writing-mode:initial;
+    }
+}

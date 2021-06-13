@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static '/styles/carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/styles/forms.css' %}">
+{% endblock %}
+
+{% block nav-item %}
+<li class="nav-item" id="about-screen"><a href="/#contact">About</a></li>
+<li class="nav-item" ><a href="/posts">Blog</a></li>                            
+<li class="nav-item" id="about-screen"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>
+{% endblock %}
+
+{% block nav-mobile %}
+<li class="nav-item" id="about-mobile"><a href="/#contact">About</a></li>
+<li class="nav-item" ><a href="/posts">Blog</a></li>
+<li class="nav-item" id="about-mobile"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>                            
+{% endblock %}
+
+{% block content %}
+<img class="banner" src="{% static 'images/fractal.png' %}" alt="cedaarlogo">
+<div id="signup" class="hand">
+    <div class="center">
+        <form method="post">
+            {% csrf_token %}
+            <h1>Login</h1>
+            <br>
+                {% for field in loginform %}
+                <p>
+                    {{field.label_tag}}
+                    <br>
+                    {{field}}
+                    {% if field.help_text %}
+                    <small style="color:rgb(154, 219, 194);">{{field.help_text}}</small>
+                    {% endif %}
+                </p>
+                <br>
+                {% endfor %}    
+            </table>
+            <p>
+                {% for error in field.errors %}
+                <small style="color:rgb(255, 137, 137);">{{error}}</small>
+                {% endfor %}
+
+                {% if loginform.non_field_errors %}
+                <small style="color:rgb(255, 137, 137);">{{loginform.non_field_errors}}</small>
+                {% endif %}
+            </p>
+            <input type="hidden" name="next" value="{{request.GET.next}}" />
+            <div id="create-button">
+                <button type="submit">Login</button>
+            </div>
+            <br>
+        </form>
+    </div>
+    <p style="font-family:'Raleway';font-size:21px;color:rgb(154, 219, 194);">This blog is viewable to all, but liking and commenting are privileges that come with active membership. Kindly cooperate. We ask only barely necessary information from our members. If you haven't registered, and wish to do so, <a style="color: white;" href="{% url 'register' %}">click here</a></p>
+</div>
+{% endblock %}

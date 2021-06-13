@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Delete?{% endblock %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static '/styles/forms.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/styles/blogstyle.css' %}">
+<style>
+    footer{
+        position: relative;
+        bottom: -9em;
+    }
+</style>
+{% endblock %}
+
+{% block nav-item %}
+<li class="nav-item" ><a href="/posts">Blog</a></li>                            
+{% endblock %}
+
+{% block nav-mobile %}
+<li class="nav-item" ><a href="/posts">Blog</a></li>
+{% endblock %}
+
+{% block content %}
+<div id="signup" class="hand" style="position:relative; top:7em;">
+    <div class="center">
+        <div class="lpost">
+            <img src="https://mnfi.anr.msu.edu/element-images/1000/Great-Lakes-Marsh-3130.jpg">
+            <div class="peek">
+                <h2>{{ object.subject }}</h2>
+                <div style="text-align:center;" class="det">
+                    <p>By {{ object.author }}</p>
+                    <p>{{ object.timestamp }}</p>    
+                </div>
+                <br>
+                <div class="func">
+                    <i class="fa fa-thumbs-up" style="font-size:24px;"><small style="font-family:sans-serif;margin-left:1px;"> 34</small></i>
+                    <i class="fa fa-comment" style="font-size:24px;"><small style="font-family:sans-serif;margin-left:1px;"> 34</small></i>
+                </div>    
+            </div>
+        </div>
+        <form method="post" class="delete-form">
+            {% csrf_token %}
+            <h1>{{object.subject}}</h1>
+            <br>
+            <p>Are you sure you want to delete this post?</p>     
+            <br><br>   
+            <div id="create-button">
+                <button type="submit" style="background-color:rgb(212, 113, 113);">Delete</button>
+                <a class="cancel" href="{% url 'postview' object.id %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+<br><br><br><br><br><br>
+{% endblock %}

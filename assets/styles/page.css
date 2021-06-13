@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=KoHo:wght@500&display=swap');
+#blog-content{
+  justify-items: center;
+}
+
+#blog-pic{
+display: flex;
+justify-content: center;
+}
+
+#blog-pic img{
+  width: 80vw;
+  margin: 0 10vw;
+  height: auto;
+  object-fit: cover;
+  overflow: hidden;
+  object-position: top;
+}
+
+#back{
+  position: absolute;
+  z-index: -3;
+  width: 100%;
+  opacity: 0.6;
+  filter: blur(7px);
+}
+
+footer{
+  display: none;
+}
+
+.contents{
+  font-size: 20px;
+  display: block;
+  padding: 15px;
+  background-color: rgba(202, 217, 230, 0.842);
+  position: absolute;
+  top: 77vh;
+  margin: 0 11em;
+}
+
+.contents p{
+  margin-top: 1.5em;
+  font-family: 'Alegreya';
+  font-size: 20px;
+  text-align: justify;
+}
+
+.contents h1{
+  font-family: 'Koho';
+  text-align: center;
+  font-size: 3em;
+  color: rgb(46, 80, 67)
+}
+
+@media only screen and (max-width: 768px) and (orientation: portrait) {   
+  #blog-pic{
+    position: relative;
+    top: 4.5em;
+    padding: 0;
+  }
+
+  #blog-pic img{
+    width: 100%;
+    margin: 0;
+  }
+
+  .contents{
+    padding: 15px;
+    background-color: rgba(202, 217, 230, 0.842);
+    position: absolute;
+    top: 40vh;
+    margin: 0 1em;
+  }
+
+  .contents h1{
+    font-size: 2.3em;
+  }
+
+  .contents p{
+    font-size: 17px;
+  }
+}
+
+@media only screen and (orientation: portrait) {   
+  .contents{
+    padding: 15px;
+    background-color: rgba(202, 217, 230, 0.842);
+    position: absolute;
+    top: 40vh;
+    margin: 0 1em;
+  }
+}

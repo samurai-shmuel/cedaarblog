@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static '/styles/front.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/styles/carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/styles/blogstyle.css' %}">
+{% endblock %}
+
+{% block nav-item %}
+<li class="nav-item" id="about-screen"><a href="/#contact">Editors</a></li>
+<li class="nav-item" ><a href="/posts">Blog</a></li>
+{% if request.user.is_authenticated %}                            
+<li class="nav-item" id="about-screen"><a href="/#end">User</a></li>
+<li class="nav-item" id="about-screen"><a href="{% url 'logout' %}?next={{ request.path|urlencode }}">Logout</a></li>
+{% else %}
+<li class="nav-item" id="about-screen"><a href="{% url 'login' %}?next={{ request.path|urlencode }}">Login</a></li>
+<li class="nav-item" id="about-screen"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>
+{% endif %}
+
+{% endblock %}
+{% block nav-mobile %}
+<li class="nav-item" id="about-mobile"><a href="/#contact">Editors</a></li>
+<li class="nav-item" ><a href="/posts">Blog</a></li>
+{% if request.user.is_authenticated %}                            
+<li class="nav-item" id="about-mobile"><a href="/#end">User</a></li>
+<li class="nav-item" id="about-mobile"><a href="{% url 'logout' %}?next={{ request.path|urlencode }}">Logout</a></li>
+{% else %}
+<li class="nav-item" id="about-mobile"><a href="{% url 'login' %}?next={{ request.path|urlencode }}">Login</a></li>
+<li class="nav-item" id="about-mobile"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<section id="showcase">
+    <div id="horiz" class="animate__animated animate__slideInDown">
+        <div class="sh-container" >
+            <div id="sh-text">
+                <h1>The Azure Marble</h1>
+                <br>
+                <p>"Who laid the foundations of the earth, that it should not be removed for ever." <span style="font-size:smaller;">(Psalm 104:5)</span></p>
+                <br>
+                <div class="btn explore">
+                 <span><a href="/posts">Explore the Blog</a></span>
+                </div>    
+                <p id="end" style="opacity: 0;">End</p>
+            </div>
+        </div>  
+    </div>
+</section>
+{% if request.user.is_authenticated %}
+<div class="hand" id="welcome">
+    <br>
+    <h1> Hi {{request.user.firstname}}, welcome to CedaarBlog </h1>
+    <p> We are pleased to have you here. We will have introspective posts on our blog, the prominent topics being sustainability and design. Your comments are valuable so long as they further healthy discussion and your criticisms are limited to ideas and concepts. Follow a peaceful coexistence with all fellow humans.</p>
+</div>
+{% endif %}
+<div id="latest" class="hand">
+    <h1>Recent</h1>
+    <div class="post-parent">
+        {% for post in latest %}
+        <div class="lpost">
+            {% if post.thumbnail %}
+            <img src="{{post.thumbnail}}">
+            {% else %}
+            <img src="https://mnfi.anr.msu.edu/element-images/1000/Great-Lakes-Marsh-3130.jpg">
+            {% endif %}
+            <div class="peek">
+                <div style="text-align:center;margin-top:10px;margin: auto 0;" class="det">
+                    <h2>{{ post.subject|truncatechars:33 }}</h2>
+                    <p>By {{ post.author_str }}</p>
+                    <p>{{ post.timestamp }}</p>    
+                    <div id="categories">
+                        {% for category in post.category.all %}
+                        <div class="category">{{ category }}</div>
+                        {% endfor %}
+                    </div>                    
+                </div>
+                <div class="func">
+                    {% if post.author == request.user %}
+                    <a href="{% url 'postedit' post.pk %}" style="text-decoration:none;"><i class="fa fa-edit" style="font-size:24px;"></i></a>
+                    <a href="{% url 'postdel' post.pk %}" style="text-decoration:none;"><i class="fa fa-trash" style="font-size:24px;"></i></a>                            
+                    {% endif %}
+                    <i class="fa fa-thumbs-up" style="font-size:24px;"><small style="font-family:sans-serif;margin-left:2px;">{{post.likes.count}}</small></i>
+                    <i class="fa fa-comment" style="font-size:24px;"><small style="font-family:sans-serif;margin-left:2px;">{{post.comments.count}}</small></i>
+                </div>
+
+                <br>
+                <!-- <p style="text-align:justify;overflow-y:hidden;max-height:">{{post.content|truncatechars:190}}</p> -->    
+            </div>
+            <div class="more">
+                <h3><a href="{% url 'postview' post.pk %}">Read <span>More</span></a></h3>
+            </div>    
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+<div id="contact" class="hand">
+    <div id="con-head">
+        <h1>Editors</h1>
+    </div>
+    <div id="authors">
+        <div class="author">
+            <div class="author-img" style="display:flex; align-items:center;">
+                <img src='https://www.rd.com/wp-content/uploads/2019/07/a-young-real-owl-scaled.jpg'>
+            </div>
+            <div class="author-text animate__animated animate__fadeUp">
+                <h2>Ar. Joseph N Thomas</h2>
+                <p>A registered architect and planner, with more than 25 years of experience in the field of sustainable design and city planning. Has contributed to journals such as Common Ground Publications, and IIA. Enjoys travelling within India and abroad, and studying culture, philosophy, environmental design, resilience, climate change, disaster-management.</p>
+                <h3>Email: cedaardesignstudio@gmail.com</h3>
+            </div>
+        </div>
+        <div class="author">
+            <div class="author-img" style="display:flex; align-items:center;">
+                <img src='https://www.rd.com/wp-content/uploads/2019/07/a-young-real-owl-scaled.jpg'>
+            </div>
+            <div class="author-text animate__animated animate__fadeUp">
+                <h2>Samuel Tom Joseph</h2>
+                <p>To be brief, I'm just a beginner in professional work, but I'm determined to really own my resume someday. That doesn't stop me from having interests. Discover what I do...</p>
+                <h3>Email: samtomann@gmail.com</h3>
+            </div>
+        </div>    
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+
+<div id="bot-nav">
+    <h4><a href="#contact" id="con-link">Editors</a></h4>
+    <h4><a href="#end" id="con-link">User</a></h4>
+    <h4><a href="/posts">Go to Blog</a></h4>
+    <h4><a href="#latest" id="lat-link">Latest Posts</a></h4>
+    <h4><a href="#">Scroll up</a></h4>
+</div>
+{% endblock %}
+
+{% block vuescript %}
+<script>
+    new Vue({
+        el: '#showcase',
+        delimiters: ['[[',']]'], 
+        vuetify: new Vuetify(),
+        data: {    
+            clickStyle: {
+                
+            }
+        },
+         methods: {
+
+         }
+      })    
+</script>
+<script>
+    $(document).ready(function(){
+      $("#reg").click(function(){
+          $("#latest").hide();
+          $("#contact").hide();
+          $("#signup").show();
+          $("#signup").css("display", "flex");
+      })
+
+        $("#lat-link").click(function(){
+            $("#latest").show();
+            $("#signup").hide();
+            $("#contact").hide();
+        })
+
+        $("#con-link").click(function(){
+            $("#latest").hide();
+            $("#signup").hide();
+            $("#contact").show();
+            $("#contact").css("display", "flex");
+        })
+    });              
+</script>
+{% endblock %}    
