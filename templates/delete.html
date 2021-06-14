@@ -24,18 +24,29 @@
 <div id="signup" class="hand" style="position:relative; top:7em;">
     <div class="center">
         <div class="lpost">
+            {% if object.thumbnail %}
+            <img src="{{object.thumbnail}}">
+            {% else %}
             <img src="https://mnfi.anr.msu.edu/element-images/1000/Great-Lakes-Marsh-3130.jpg">
+            {% endif %}
             <div class="peek">
-                <h2>{{ object.subject }}</h2>
-                <div style="text-align:center;" class="det">
-                    <p>By {{ object.author }}</p>
+                <div style="text-align:center;margin-top:10px;margin: auto 0;" class="det">
+                    <h2>{{ object.subject|truncatechars:33 }}</h2>
+                    <p>By {{ object.author_str }}</p>
                     <p>{{ object.timestamp }}</p>    
+                    <div id="categories">
+                        {% for category in object.category.all %}
+                        <div class="category">{{ category }}</div>
+                        {% endfor %}
+                    </div>                    
                 </div>
-                <br>
                 <div class="func">
-                    <i class="fa fa-thumbs-up" style="font-size:24px;"><small style="font-family:sans-serif;margin-left:1px;"> 34</small></i>
-                    <i class="fa fa-comment" style="font-size:24px;"><small style="font-family:sans-serif;margin-left:1px;"> 34</small></i>
-                </div>    
+                    <i class="fa fa-thumbs-up" style="font-size:24px;"><small style="font-family:sans-serif;margin-left:2px;">{{object.likes.count}}</small></i>
+                    <i class="fa fa-comment" style="font-size:24px;"><small style="font-family:sans-serif;margin-left:2px;">{{object.comments.count}}</small></i>
+                </div>
+
+                <br>
+                <!-- <p style="text-align:justify;overflow-y:hidden;max-height:">{{post.content|truncatechars:190}}</p> -->    
             </div>
         </div>
         <form method="post" class="delete-form">

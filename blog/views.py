@@ -38,16 +38,41 @@ def paginate_query(queryset, pg):
     return posts
 
 
+categories = map(str, Category.objects.all())
+diction = dict.fromkeys(categories, False)
+
+
+def get_key():
+    catlist = []
+    for key, value in diction.items():
+         if value:
+             catlist.append(key)
+    return catlist
+
+
 def posts(request):
-    context = {'categories': Category.objects.all(), }
+    context = {}
     queryset = Posts.objects.all().order_by('-timestamp')
     page = request.GET.get('page')
     if request.GET.get("searched"):
         searched = request.GET.get("searched")
         queryset = queryset.filter(Q(subject__contains=searched) | Q(author_str__contains=searched))
     if request.GET.get("category"):
-        queryset = queryset.filter(category__name=request.GET.get("category"))
+        category = request.GET.get('category')
+        diction[category] = not diction[category]
+        if diction['uncategorized']:
+            for i in diction.keys():
+                queryset = queryset.exclude(category__name=i)
+        elif diction['All']:
+            for key in get_key():
+                diction[key] = False
+        else:
+            for i in get_key():
+                queryset = queryset.filter(category__name=i)
+        print(diction)
+        context['posts'] = paginate_query(queryset, page)
     context['posts'] = paginate_query(queryset, page)
+    context['categories'] = diction
     return render(request, 'posts.html', context)
 
 
@@ -96,11 +121,14 @@ def postview(request, pk):
             return HttpResponseRedirect(reverse('postview', args=[str(pk)]))
         else:
             return redirect('login')
+    liked_by = post.likes.filter(id=request.user.id).exists()
     if user == post.author or user.is_superuser:
         comments = Comments.objects.filter(post=post)
+    elif user.is_active:
+        comments = Comments.objects.filter(post=post, viewable=True) | Comments.objects.filter(post=post, commenter=user)
     else:
         comments = Comments.objects.filter(post=post, viewable=True)
-    context = {"post": post, "comments": comments, "form": form}
+    context = {"post": post, "comments": comments, "form": form, "liked": liked_by}
     return render(request, 'blog.html', context)
 
 

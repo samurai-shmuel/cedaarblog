@@ -43,13 +43,16 @@
         </form>    
     </div>
     <div id="catsearch">
-        {% for category in categories %}
+        {% for category, value in categories.items %}
         <form method="GET" action="/posts/">
             {% csrf_token %}
+            {% if value %}
+            <button class="category" style="background-color: rgb(17, 194, 155);" type="submit" name="category" value="{{ category}}">{{ category }}</button>
+            {% else %}
             <button class="category" type="submit" name="category" value="{{ category}}">{{ category }}</button>
+            {% endif %}
         </form>    
         {% endfor %}    
-        <a href="{% url 'posts' %}"><div class="category">All</div></a>
     </div>
 </div>
 {% endblock %}
@@ -104,7 +107,11 @@
                             <a href="{% url 'postedit' post.pk %}" style="text-decoration:none;"><i class="fa fa-edit" style="font-size:24px;"></i></a>
                             <a href="{% url 'postdel' post.pk %}" style="text-decoration:none;"><i class="fa fa-trash" style="font-size:24px;"></i></a>                            
                             {% endif %}
+                            {% if request.user in post.likes %}
+                            <i class="fa fa-thumbs-up" style="font-size:24px;color:yellow;"><small style="font-family:sans-serif;margin-left:2px;">{{post.likes.count}}</small></i>
+                            {% else %}
                             <i class="fa fa-thumbs-up" style="font-size:24px;"><small style="font-family:sans-serif;margin-left:2px;">{{post.likes.count}}</small></i>
+                            {% endif %}
                             <i class="fa fa-comment" style="font-size:24px;"><small style="font-family:sans-serif;margin-left:2px;">{{post.comments.count}}</small></i>
                         </div>
 
