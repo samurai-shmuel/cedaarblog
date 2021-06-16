@@ -6,7 +6,7 @@ form{
 }
 
 form input{
-    padding: 2px;
+    padding: 4px 10px;
     font-size: 16px;
     font-family: 'Poppins';
     width: 100%;
@@ -43,13 +43,15 @@ button{
     width: 14vh;
     font-size: 1em;
     font-weight: bold;
+    border-radius: 9px;
     font-family: 'Raleway';
-    background-color: rgb(71, 169, 255);
+    background-color: rgb(12, 107, 190);
     color: #fff;
     padding: 10px;
     cursor: pointer;
     border: none;
     transition: 0.3s ease;
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.4);
 }
 
 #create-button{
@@ -61,9 +63,16 @@ button{
     width: 6em;
 }    
 
+.cool{
+    margin-top: 2rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color:rgb(182, 236, 218);
+    font-family: 'Raleway';
+}
 
 button:hover{
-    color: rgb(58, 73, 73);
+    background-color: rgb(76, 164, 241);
 }
 
 .cancel{

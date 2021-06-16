@@ -38,7 +38,7 @@
 .sh-container{
     opacity:1;
     width: 100%;
-    padding: 20rem 10rem;
+    padding: 33vh 10rem;
     display: flex;
     text-align: center;
     flex-direction: column;
@@ -155,6 +155,10 @@
     .btn{
         font-size: 1em;
     }
+
+    .explore {
+        margin: 0 2%;
+    }
     
   }
 
@@ -164,6 +168,11 @@
         position: relative;
         top: 0em;
     }
+
+    .explore {
+        margin: 0 2%;
+    }
+
   }
 
 

@@ -11,7 +11,7 @@
 <li class="nav-item" id="about-screen"><a href="/#contact">Editors</a></li>
 <li class="nav-item" ><a href="/posts">Blog</a></li>
 {% if request.user.is_authenticated %}                            
-<li class="nav-item" id="about-screen"><a href="/#end">User</a></li>
+<li class="nav-item" id="about-screen"><a href="/#latest">User</a></li>
 <li class="nav-item" id="about-screen"><a href="{% url 'logout' %}?next={{ request.path|urlencode }}">Logout</a></li>
 {% else %}
 <li class="nav-item" id="about-screen"><a href="{% url 'login' %}?next={{ request.path|urlencode }}">Login</a></li>
@@ -23,7 +23,7 @@
 <li class="nav-item" id="about-mobile"><a href="/#contact">Editors</a></li>
 <li class="nav-item" ><a href="/posts">Blog</a></li>
 {% if request.user.is_authenticated %}                            
-<li class="nav-item" id="about-mobile"><a href="/#end">User</a></li>
+<li class="nav-item" id="about-mobile"><a href="/#latest">User</a></li>
 <li class="nav-item" id="about-mobile"><a href="{% url 'logout' %}?next={{ request.path|urlencode }}">Logout</a></li>
 {% else %}
 <li class="nav-item" id="about-mobile"><a href="{% url 'login' %}?next={{ request.path|urlencode }}">Login</a></li>
@@ -48,14 +48,7 @@
         </div>  
     </div>
 </section>
-{% if request.user.is_authenticated %}
-<div class="hand" id="welcome">
-    <br>
-    <h1> Hi {{request.user.firstname}}, welcome to CedaarBlog </h1>
-    <p> We are pleased to have you here. We will have introspective posts on our blog, the prominent topics being sustainability and design. Your comments are valuable so long as they further healthy discussion and your criticisms are limited to ideas and concepts. Follow a peaceful coexistence with all fellow humans.</p>
-</div>
-{% endif %}
-<div id="latest" class="hand">
+<div id="latest" class="hand animate__animated animate__slideInUp">
     <h1>Recent</h1>
     <div class="post-parent">
         {% for post in latest %}
@@ -96,7 +89,17 @@
         {% endfor %}
     </div>
 </div>
-<div id="contact" class="hand">
+{% if request.user.is_authenticated %}
+<div class="hand animate__animated animate__fadeInUp" id="welcome">
+    <div class="weltext">
+        <h1> Hi {{request.user.firstname}}, welcome to CedaarBlog </h1>
+        <p> We are pleased to have you here. We will have introspective posts on our blog, the prominent topics being sustainability and design. Your comments are valuable so long as they further healthy discussion and your criticisms are limited to ideas and concepts. Follow a peaceful coexistence with all fellow humans.</p>    
+        <p> If you want to change your password, do so <a href="/password-reset/" style="color:aquamarine;">here</a></p>
+    </div>
+</div>
+{% endif %}
+
+<div id="contact" class="hand animate__animated animate__zoomIn">
     <div id="con-head">
         <h1>Editors</h1>
     </div>
@@ -113,11 +116,11 @@
         </div>
         <div class="author">
             <div class="author-img" style="display:flex; align-items:center;">
-                <img src='https://www.rd.com/wp-content/uploads/2019/07/a-young-real-owl-scaled.jpg'>
+                <img src='https://i.ibb.co/VwCF6gB/dp1-Copy.jpg' alt="Samuel">
             </div>
             <div class="author-text animate__animated animate__fadeUp">
                 <h2>Samuel Tom Joseph</h2>
-                <p>To be brief, I'm just a beginner in professional work, but I'm determined to really own my resume someday. That doesn't stop me from having interests. Discover what I do...</p>
+                <p>A B. Tech student at IIITDM, Kancheepuram, with interests in product design, IoT and web development. Painter, musician, historian, and environmentalist who dreams of conserving marshes.</p>
                 <h3>Email: samtomann@gmail.com</h3>
             </div>
         </div>    
@@ -130,9 +133,9 @@
 
 <div id="bot-nav">
     <h4><a href="#contact" id="con-link">Editors</a></h4>
-    <h4><a href="#end" id="con-link">User</a></h4>
+    <h4><a href="#latest" id="con-link">User</a></h4>
     <h4><a href="/posts">Go to Blog</a></h4>
-    <h4><a href="#latest" id="lat-link">Latest Posts</a></h4>
+    <h4><a href="#end" id="lat-link">Latest Posts</a></h4>
     <h4><a href="#">Scroll up</a></h4>
 </div>
 {% endblock %}
@@ -152,28 +155,5 @@
 
          }
       })    
-</script>
-<script>
-    $(document).ready(function(){
-      $("#reg").click(function(){
-          $("#latest").hide();
-          $("#contact").hide();
-          $("#signup").show();
-          $("#signup").css("display", "flex");
-      })
-
-        $("#lat-link").click(function(){
-            $("#latest").show();
-            $("#signup").hide();
-            $("#contact").hide();
-        })
-
-        $("#con-link").click(function(){
-            $("#latest").hide();
-            $("#signup").hide();
-            $("#contact").show();
-            $("#contact").css("display", "flex");
-        })
-    });              
 </script>
 {% endblock %}    

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Email Config{% endblock %}
+{% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static '/styles/carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/styles/forms.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<img class="banner" src="{% static 'images/fractal.png' %}" alt="cedaarlogo">
+<div id="signup" class="hand">
+    <h1>Password Reset</h1>
+    <br>
+    <div class="center" style="min-height: 40vh;">
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <p>
+                {{field.label_tag}}
+                <br>
+                {{field}}
+                <br>
+                {% if field.help_text %}
+                <small style="color:rgb(154, 219, 194); font-size:11px;">{{field.help_text}}</small>
+                {% endif %}
+    
+                {% for error in field.errors %}
+                <small style="color:rgb(255, 137, 137);">{{error}}</small>
+                {% endfor %}
+                <br>
+            </p>
+            {% endfor %}
+            <input type="hidden" name="next" value="{{request.GET.next}}" />
+            <div id="create-button">
+                <button type="submit">Login</button>
+            </div>
+            <br>
+            <br>
+        </form>
+    </div>
+</div>
+{% endblock %}

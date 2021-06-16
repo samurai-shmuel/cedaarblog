@@ -48,6 +48,8 @@
             <div id="create-button">
                 <button type="submit">Register</button>
             </div>
+            <br>
+            <p style="color:rgb(154, 219, 194); font-size:18px; text-align:center;">Already registered? <a href="{% url 'login' %}?next={{ request.path|urlencode }}" style="color:aquamarine;">Login here</a></p>
         </form>
     </div>
 </div>

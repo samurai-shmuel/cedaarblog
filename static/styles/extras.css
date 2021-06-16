@@ -13,6 +13,10 @@
     color:rgb(185, 255, 234);
 }
 
+#catsearch form{
+    padding: 0;
+}
+
 .email h1{
     padding: 1em 1em;
     background-color:rgb(142, 255, 199);
@@ -90,7 +94,7 @@ button{
 }
 
 #search-bar button:hover{
-    background-color:  rgb(54, 149, 233)
+    background-color:  rgb(54, 149, 233);
 }
 
 form input{

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Email Config{% endblock %}
+{% load static %}
+
+{% block nav-item %}
+<li class="nav-item" id="about-screen"><a href="{% url 'login' %}?next=/">Login</a></li>
+{% endblock %}
+
+{% block nav-mobile %}
+<li class="nav-mobile" id="about-screen"><a href="{% url 'login' %}?next=/">Login</a></li>
+{% endblock %}
+
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static '/styles/carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/styles/forms.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<img class="banner" src="{% static 'images/fractal.png' %}" alt="cedaarlogo">
+<div id="signup" class="hand">
+    <h1>Password Reset</h1>
+    <br>
+    <div class="center" style="height: 40vh;">
+            <br>
+            <div class="cool">
+                <p>Your new password is confirmed!</p>
+            </div>
+            <br>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Email Config{% endblock %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static '/styles/carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/styles/forms.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<img class="banner" src="{% static 'images/fractal.png' %}" alt="cedaarlogo">
+<div id="signup" class="hand">
+    <h1>Password Reset</h1>
+    <br>
+    <div class="center" style="height: 40vh;">
+            <br>
+            <div class="cool">
+                <p>Check your email for confirmation link</p>
+            </div>
+            <br>
+        </form>
+    </div>
+</div>
+{% endblock %}

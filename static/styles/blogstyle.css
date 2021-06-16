@@ -70,6 +70,10 @@ a::after{
     justify-content: center;
 }
 
+.animate__animated.animate__zoomIn {
+    --animate-duration: 0.5s;
+}
+
 .lpost{
     position: relative;
     background-color: rgb(46, 75, 72);

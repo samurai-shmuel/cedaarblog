@@ -44,7 +44,7 @@
     </div>
     <div id="catsearch">
         {% for category, value in categories.items %}
-        <form method="GET" action="/posts/">
+        <form method="POST" action="/posts/">
             {% csrf_token %}
             {% if value %}
             <button class="category" style="background-color: rgb(17, 194, 155);" type="submit" name="category" value="{{ category}}">{{ category }}</button>
@@ -85,7 +85,7 @@
     <div id="combo">
         <div class="hands posts">
             {% for post in posts %}
-                <div class="lpost">
+                <div class="lpost animate__animated animate__zoomIn">
                     {% if post.thumbnail %}
                     <img src="{{post.thumbnail}}">
                     {% else %}
@@ -177,4 +177,9 @@
         });
     });
 </script>
+<script>
+    if ( window.history.replaceState ) {
+      window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
 {% endblock %}

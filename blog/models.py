@@ -55,7 +55,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=255, default='uncategorized')
+    name = models.CharField(max_length=255, null=True)
 
     def __str__(self):
         return f"{self.name}"
@@ -68,7 +68,7 @@ class Posts(models.Model):
     subject = models.CharField(max_length=200)
     thumbnail = models.URLField(null=True, blank=True)
     content = RichTextField()
-    category = models.ManyToManyField(Category, related_name='related_posts')
+    category = models.ManyToManyField(Category, related_name='related_posts', blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     author_str = models.CharField(max_length=150, default='Anonymous')

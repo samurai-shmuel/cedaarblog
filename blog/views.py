@@ -42,14 +42,6 @@ categories = map(str, Category.objects.all())
 diction = dict.fromkeys(categories, False)
 
 
-def get_key():
-    catlist = []
-    for key, value in diction.items():
-         if value:
-             catlist.append(key)
-    return catlist
-
-
 def posts(request):
     context = {}
     queryset = Posts.objects.all().order_by('-timestamp')
@@ -57,20 +49,20 @@ def posts(request):
     if request.GET.get("searched"):
         searched = request.GET.get("searched")
         queryset = queryset.filter(Q(subject__contains=searched) | Q(author_str__contains=searched))
-    if request.GET.get("category"):
-        category = request.GET.get('category')
+    if request.POST.get("category"):
+        category = request.POST.get('category')
         diction[category] = not diction[category]
         if diction['uncategorized']:
-            for i in diction.keys():
-                queryset = queryset.exclude(category__name=i)
-        elif diction['All']:
-            for key in get_key():
-                diction[key] = False
+            queryset = Posts.objects.filter(category=None).order_by('-timestamp')
         else:
-            for i in get_key():
-                queryset = queryset.filter(category__name=i)
-        print(diction)
+            for key in diction.keys():
+                if diction[key]:
+                    queryset = queryset.filter(category__name=key)
         context['posts'] = paginate_query(queryset, page)
+    else:
+        for key in diction.keys():
+            if diction[key]:
+                diction[key] = False
     context['posts'] = paginate_query(queryset, page)
     context['categories'] = diction
     return render(request, 'posts.html', context)
@@ -148,6 +140,8 @@ def login_view(request):
             if user and user.is_active:
                 login(request, user)
                 nexte = request.POST.get('next', '/')
+                if nexte=='/register/':
+                    return redirect('index')
                 return HttpResponseRedirect(nexte)
     else:
         form = UserLoginForm()

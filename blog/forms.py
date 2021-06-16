@@ -6,7 +6,8 @@ from .models import User, Posts, Category, Comments
 choices = Category.objects.all().values_list('name', 'name')
 choice_list = []
 for item in choices:
-    choice_list.append(item)
+    if item!='uncategorized' and item!='All':
+        choice_list.append(item)
 
 
 class CustomUserCreationForm(UserCreationForm):

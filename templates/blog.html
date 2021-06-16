@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block nav-item %}
-<li class="nav-item" id="about-screen"><a href="/#contact">About</a></li>
+<li class="nav-item" id="about-screen"><a href="/#contact">Editors</a></li>
 <li class="nav-item" ><a href="/posts">Blog</a></li>           
 {% if request.user.is_authenticated %}                            
 <li class="nav-item" id="about-screen"><a href="{% url 'logout' %}?next={{ request.path|urlencode }}">Logout</a></li>
@@ -16,7 +16,7 @@
 {% endif %}
 {% endblock %}
 {% block nav-mobile %}
-<li class="nav-item" id="about-mobile"><a href="/#contact">About</a></li>
+<li class="nav-item" id="about-mobile"><a href="/#contact">Editors</a></li>
 <li class="nav-item" ><a href="/posts">Blog</a></li>      
 {% if request.user.is_authenticated %}                            
 <li class="nav-item" id="about-mobile"><a href="{% url 'logout' %}?next={{ request.path|urlencode }}">Logout</a></li>
