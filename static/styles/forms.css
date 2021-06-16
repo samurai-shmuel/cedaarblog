@@ -54,6 +54,14 @@ button{
     box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.4);
 }
 
+.delete button{
+    background-color: rgb(196, 62, 62);
+}
+
+.delete button:hover{
+    background-color: rgb(219, 105, 105);
+}
+
 #create-button{
     display: flex;
     justify-content: center;
@@ -67,7 +75,7 @@ button{
     margin-top: 2rem;
     font-size: 1.3rem;
     font-weight: bold;
-    color:rgb(182, 236, 218);
+    color:rgb(113, 192, 133);
     font-family: 'Raleway';
 }
 
@@ -84,9 +92,19 @@ button:hover{
     padding: 10px;
     cursor: pointer;
     border: none;
+    border-radius: 10px;
     transition: 0.3s ease;
     margin-left: 15px;
-    background-color:rgb(109, 175, 144);
+    background-color:rgb(41, 158, 103);
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.4);
+}
+
+.cancel:hover{
+    background-color: rgb(109, 175, 144);
+}
+
+.cancel a:hover{
+    color: whitesmoke;
 }
 
 button:hover a{

@@ -16,13 +16,13 @@
 {% endif %}
 {% endblock %}
 {% block nav-mobile %}
-<li class="nav-item" id="about-mobile"><a href="/#contact">Editors</a></li>
-<li class="nav-item" ><a href="/posts">Blog</a></li>      
+<li class="nav-mobile" id="about-mobile"><a href="/#contact">Editors</a></li>
+<li class="nav-mobile" ><a href="/posts">Blog</a></li>      
 {% if request.user.is_authenticated %}                            
-<li class="nav-item" id="about-mobile"><a href="{% url 'logout' %}?next={{ request.path|urlencode }}">Logout</a></li>
+<li class="nav-mobile" id="about-mobile"><a href="{% url 'logout' %}?next={{ request.path|urlencode }}">Logout</a></li>
 {% else %}
-<li class="nav-item" id="about-mobile"><a href="{% url 'login' %}?next={{ request.path|urlencode }}">Login</a></li>
-<li class="nav-item" id="about-mobile"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>
+<li class="nav-mobile" id="about-mobile"><a href="{% url 'login' %}?next={{ request.path|urlencode }}">Login</a></li>
+<li class="nav-mobile" id="about-mobile"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>
 {% endif %}
 {% endblock %}
 
@@ -101,7 +101,7 @@
                     {% if comment.commenter == request.user or request.user.is_admin %}
                     {% if comment.viewable %}
                     {% else %}
-                    <small style="font-size:12px;">This comment is yet to be displayed.</small>
+                    <small style="font-size:9px;">This comment is yet to be displayed.</small>
                     {% endif %}
                     {% endif %}
                     {% if request.user.is_admin %}

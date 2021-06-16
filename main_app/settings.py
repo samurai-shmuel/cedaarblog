@@ -153,7 +153,7 @@ def verified_callback(user):
 
 
 EMAIL_VERIFIED_CALLBACK = verified_callback
-EMAIL_FROM_ADDRESS = 'samtomann2@gmail.com'
+EMAIL_FROM_ADDRESS = config('EMAIL_HOST_USER')
 EMAIL_MAIL_SUBJECT = 'Activate your account at Cedaarpost'
 EMAIL_MAIL_HTML = 'email.html'
 EMAIL_MAIL_PLAIN = 'email.txt'

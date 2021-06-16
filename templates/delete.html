@@ -2,8 +2,9 @@
 {% load static %}
 {% block title %}Delete?{% endblock %}
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static '/styles/forms.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static '/styles/blogstyle.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/styles/forms.css' %}">
+
 <style>
     footer{
         position: relative;
@@ -55,8 +56,8 @@
             <br>
             <p>Are you sure you want to delete this post?</p>     
             <br><br>   
-            <div id="create-button">
-                <button type="submit" style="background-color:rgb(212, 113, 113);">Delete</button>
+            <div id="create-button" class="delete">
+                <button type="submit">Delete</button>
                 <a class="cancel" href="{% url 'postview' object.id %}">Cancel</a>
             </div>
         </form>

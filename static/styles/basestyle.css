@@ -172,7 +172,8 @@ footer a{
 }
 
 footer a:hover{
-    color: aqua;
+    cursor: pointer;
+    color: rgb(145, 241, 213);
 }
 
 #bot-nav{

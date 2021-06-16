@@ -68,9 +68,9 @@ class Posts(models.Model):
     subject = models.CharField(max_length=200)
     thumbnail = models.URLField(null=True, blank=True)
     content = RichTextField()
-    category = models.ManyToManyField(Category, related_name='related_posts', blank=True, null=True)
+    category = models.ManyToManyField(Category, related_name='related_posts', blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     author_str = models.CharField(max_length=150, default='Anonymous')
     likes = models.ManyToManyField(User, related_name='blogpost', blank=True)
 
