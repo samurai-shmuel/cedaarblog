@@ -1,1 +1,1 @@
-web: gunicorn djangoblog.wsgi
+web: gunicorn main_app.wsgi
