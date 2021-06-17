@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://cedaarblog.herokuapp.com/']
 
 
 # Application definition
@@ -158,7 +158,7 @@ EMAIL_MAIL_HTML = 'email.html'
 EMAIL_MAIL_PLAIN = 'email.txt'
 EMAIL_TOKEN_LIFE = 300
 EMAIL_PAGE_TEMPLATE = 'confotp.html'
-EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000/'
+EMAIL_PAGE_DOMAIN = 'https://cedaarblog.herokuapp.com/'
 
 
 CKEDITOR_CONFIGS = {
