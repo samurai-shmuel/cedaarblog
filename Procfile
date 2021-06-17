@@ -1,1 +1,1 @@
-web: gunicorn CedaarBlog.wsgi
+web: gunicorn djangoblog.wsgi
