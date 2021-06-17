@@ -107,10 +107,11 @@ input{
 
 nav{
     position:absolute;
-    top: 100%;
+    top: 99.6%;
     width: 100%;
     left: 0;
     display: flex;
+    padding-top: 0.3em;
     background-color: rgba(147, 235, 216, 0.849);
     text-align:left;
     transform: scale(1,0);

@@ -191,7 +191,7 @@ def postcreate(request):
     form = PostForm(request.POST or None)
     if form.is_valid():
         obj = form.save(commit=False)
-        obj.author = User.objects.filter(email=request.user.email).first()
+        obj.author = request.user
         obj.author_str = obj.author
         obj.save()
         pk = obj.pk
