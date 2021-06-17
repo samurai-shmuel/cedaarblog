@@ -83,21 +83,6 @@ def email_comment(obj):
     )
 
 
-def email_password(obj):
-    subject = f"Comment by {obj.commenter_str} to {obj.post}"
-    message = '"'+obj.comment+'"'
-    receiver = ['samtomann@gmail.com','cedaardesignstudio@gmail.com']
-    if obj.post.author.email not in receiver:
-        receiver.append(obj.post.author.email)
-    sender_mail = settings.EMAIL_HOST_USER
-    send_mail(
-        subject,
-        message,
-        sender_mail,
-        receiver,
-    )
-
-
 def postview(request, pk):
     post = Posts.objects.get(id=pk)
     user = request.user

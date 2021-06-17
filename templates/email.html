@@ -1,3 +1,4 @@
+{% load tz %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +48,7 @@
     <div class="email">
         <h1>You are almost there, {{ user }}!</h1><br>
         <h2>Please click <a href="{{ link }}">here</a> to confirm your account at CedaarBlog</h2>
-        <h2>The token expires on {{ expiry|time:"h:i" }}</h2>
+        <h2>The token expires in 5 minutes</h2>
         <div class="heath">
             <img class="avatar" src="https://i.ibb.co/q0fKZsC/logo.png" alt="cedaarlogo">
         </div>
