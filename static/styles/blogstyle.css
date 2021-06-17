@@ -201,6 +201,10 @@ a::after{
         .pushDown{
             padding-top: 10em;
         }
+
+        #combo{
+            min-height: 62vh;
+        }
         
     }
 

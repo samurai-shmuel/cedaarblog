@@ -13,9 +13,9 @@
 {% endblock %}
 
 {% block nav-mobile %}
-<li class="nav-item" id="about-mobile"><a href="/#contact">About</a></li>
-<li class="nav-item" ><a href="/posts/">Blog</a></li>
-<li class="nav-item" id="about-mobile"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>                            
+<li class="nav-mobile" id="about-mobile"><a href="/#contact">About</a></li>
+<li class="nav-mobile" ><a href="/posts/">Blog</a></li>
+<li class="nav-mobile" id="about-mobile"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>                            
 {% endblock %}
 
 {% block content %}

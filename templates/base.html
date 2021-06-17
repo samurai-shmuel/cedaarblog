@@ -20,34 +20,35 @@
 <body>
     <div id="app">
         <section id="frac">
-            <div id="top_bar">
+            <div id="top_bar" class="top_bar">
                 <div class="headerdiv">
                     <img class="avatar" src="{% static 'images/logo.png' %}" alt="cedaarlogo">
                     <div id="header"><h2 v-resize-text="{ratio:1, minFontSize: '20px', maxFontSize: '25px'}">Cedaarblog</h2></div>
-                    <i class="fa fa-navicon" id="navicon" style="font-size:26px;"></i>
-                    <nav class="animate__animated animate__fadeDown screen">
-                        <ul>
-                            <li class="nav-item" ><a href="/">Home</a></li>
-                            {% block nav-item %}
-                            
-                            {% endblock %}
-                        </ul>    
-                    </nav>    
+                    <label for="nav-toggle" class="nav-toggle-label"><i class="fa fa-navicon" id="navicon" style="font-size:26px;"></i></label>
                 </div>
-                <nav class="mobile">
+                <input type="checkbox" id="nav-toggle" class="nav-toggle">
+                <nav>
+                    <ul>
+                        <li class="nav-item" ><a href="/">Home</a></li>
+                        {% block nav-item %}
+                        
+                        {% endblock %}
+                    </ul>    
+                </nav>        
+                <!-- <nav class="mobile">
                     <ul>
                         <li class="nav-item" ><a href="/">Home</a></li>
                         {% block nav-mobile %}
                             
                         {% endblock %}
                     </ul>    
-                </nav>
+                </nav> -->
                 {% block fixed %}
                 {% endblock %}
             </div>
             {% block content %}
             {% endblock %}
-            <footer class="animate__animated animate__fadeInUp">
+            <footer>
                 {% block footer %}
                 {% endblock %}
                 <p style="text-align: center;">
@@ -70,20 +71,5 @@
       </script>
     {% block vuescript %}
     {% endblock %}
-    <script>
-        $(document).ready(function(){
-            $(window).resize(function() {
-                // This will fire each time the window is resized:
-                if($(window).width() <= 768) {
-                    $("#navicon").click(function(){
-                        $(".mobile").toggle(300, 'linear');
-                    });        
-                } else {
-                    // if smaller
-                    $('.mobile').hide();
-                }
-            }).resize();
-        });
-    </script>
 </body>
 </html>

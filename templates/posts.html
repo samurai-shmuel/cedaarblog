@@ -159,6 +159,18 @@
 </div>
 {% endif %}
 <br>
+<!--  -->
+<form action="{% url 'subscribe' %}?next={{ request.path|urlencode }}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{request.GET.next}}" />
+    <button class="subscribe">
+        {% if request.user.is_subscribed %}
+        Unsubscribe
+        {% else %}
+        Subscribe
+        {% endif %}
+    </button>    
+</form>
 <div id="bot-nav">
     <h4><a href="/#contact" id="con-link">Editors</a></h4>
     <h4><a href="/">Return</a></h4>

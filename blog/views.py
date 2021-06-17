@@ -8,7 +8,9 @@ from django.urls import reverse
 from django_email_verification import send_email
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from django.views.generic import UpdateView, DeleteView
 from .models import Posts, Comments, Category, User
 from .forms import CustomUserCreationForm, UserLoginForm, PostForm, CommentForm
@@ -70,8 +72,8 @@ def posts(request):
 
 def email_comment(obj):
     subject = f"Comment by {obj.commenter_str} to {obj.post}"
-    message = '"'+obj.comment+'"'
-    receiver = ['samtomann@gmail.com','cedaardesignstudio@gmail.com']
+    message = '"' + obj.comment + '"'
+    receiver = ['samtomann@gmail.com', 'cedaardesignstudio@gmail.com']
     if obj.post.author.email not in receiver:
         receiver.append(obj.post.author.email)
     sender_mail = settings.EMAIL_HOST_USER
@@ -102,7 +104,8 @@ def postview(request, pk):
     if user == post.author or user.is_superuser:
         comments = Comments.objects.filter(post=post)
     elif user.is_active:
-        comments = Comments.objects.filter(post=post, viewable=True) | Comments.objects.filter(post=post, commenter=user)
+        comments = Comments.objects.filter(post=post, viewable=True) | Comments.objects.filter(post=post,
+                                                                                               commenter=user)
     else:
         comments = Comments.objects.filter(post=post, viewable=True)
     context = {"post": post, "comments": comments, "form": form, "liked": liked_by}
@@ -125,7 +128,7 @@ def login_view(request):
             if user and user.is_active:
                 login(request, user)
                 nexte = request.POST.get('next', '/')
-                if nexte=='/register/':
+                if nexte == '/register/':
                     return redirect('index')
                 return HttpResponseRedirect(nexte)
     else:
@@ -163,6 +166,26 @@ def confirm(request):
     return render(request, 'confotp.html', context)
 
 
+def email_post(pk):
+    post = Posts.objects.get(pk=pk)
+    context = {
+        "post": post,
+    }
+    subject = f"{post.author} has uploaded a new post - {post.subject}"
+    content = render_to_string('notification.html', context)
+    message = strip_tags(content)
+    receiver = [user.email for user in User.objects.filter(is_subscribed=True)]
+    sender_mail = settings.EMAIL_HOST_USER
+    email = EmailMultiAlternatives(
+                subject,
+                message,
+                sender_mail,
+                receiver,
+            )
+    email.attach_alternative(content, 'text/html')
+    email.send()
+
+
 def postcreate(request):
     context = {}
     form = PostForm(request.POST or None)
@@ -172,6 +195,7 @@ def postcreate(request):
         obj.author_str = obj.author
         obj.save()
         pk = obj.pk
+        email_post(pk)
         return redirect('postview', pk=pk)
     context['form'] = form
     return render(request, "create.html", context)
@@ -230,3 +254,13 @@ def reveal(request, ck, pk):
             comment.viewable = True
         comment.save()
     return HttpResponseRedirect(reverse('postview', args=[str(pk)]))
+
+
+@login_required
+def subscribe(request):
+    if request.POST:
+        nexte = request.GET.get('next', '/')
+        user = User.objects.get(id=request.user.id)
+        user.is_subscribed = not user.is_subscribed
+        user.save()
+        return HttpResponseRedirect(nexte)

@@ -17,6 +17,7 @@ urlpatterns = [
     path("like/<int:pk>/", views.liker, name="like_post"),
     path("posts/create/", views.postcreate, name="create"),
     path("login/", views.login_view, name="login"),
+    path("subscribe/", views.subscribe, name="subscribe"),
     path("logout/", views.logout_view, name="logout"),
     path("register/", views.register, name="register"),
     path("password-reset/", auth_views.PasswordResetView.as_view(template_name='reset.html'), name="passwordReset"),
