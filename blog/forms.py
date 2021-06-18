@@ -3,11 +3,7 @@ from django.contrib.auth import authenticate
 from django import forms
 from .models import User, Posts, Category, Comments
 
-choices = Category.objects.all().values_list('name', 'name')
-choice_list = []
-for item in choices:
-    if item!='uncategorized' and item!='All':
-        choice_list.append(item)
+choices = list(Category.objects.values('name').distinct().reverse())
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -47,7 +43,7 @@ class PostForm(forms.ModelForm):
         widget = {
             'subject': forms.TextInput(),
             'content': forms.Textarea(),
-            'category': forms.Select(choice_list),
+            'category': forms.Select(choices),
         }
 
 

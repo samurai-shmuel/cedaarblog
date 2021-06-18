@@ -17,15 +17,13 @@ from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = ['cedaarblog.herokuapp.com','127.0.0.1']
-
+ALLOWED_HOSTS = ['cedaarblog.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
@@ -74,7 +72,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'main_app.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -83,24 +80,22 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'd147d05fr2g1j8',
         'HOST': 'ec2-54-164-241-193.compute-1.amazonaws.com',
-        'PORT':5432,
+        'PORT': 5432,
         'USER':'hnbykhlsqzpnxu',
         'PASSWORD':'b0b66689107c3c57102692b0955942b2ed215631753149c0d2d3e9ac06623604',
     }
-}
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
+}
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -120,7 +115,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -133,7 +127,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -169,7 +162,6 @@ EMAIL_MAIL_PLAIN = 'email.txt'
 EMAIL_TOKEN_LIFE = 300
 EMAIL_PAGE_TEMPLATE = 'confotp.html'
 EMAIL_PAGE_DOMAIN = 'https://cedaarblog.herokuapp.com/'
-
 
 CKEDITOR_CONFIGS = {
     'default': {
