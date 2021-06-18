@@ -80,10 +80,19 @@ WSGI_APPLICATION = 'main_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd147d05fr2g1j8',
+        'HOST': 'ec2-54-164-241-193.compute-1.amazonaws.com',
+        'PORT':5432,
+        'USER':'hnbykhlsqzpnxu',
+        'PASSWORD':'b0b66689107c3c57102692b0955942b2ed215631753149c0d2d3e9ac06623604',
     }
 }
+
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
