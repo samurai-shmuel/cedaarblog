@@ -40,11 +40,9 @@ def paginate_query(queryset, pg):
     return posts
 
 
-categories = map(str, Category.objects.all())
-diction = dict.fromkeys(categories, False)
-
-
 def posts(request):
+    categories = map(str, Category.objects.all())
+    diction = dict.fromkeys(categories, False)
     context = {}
     queryset = Posts.objects.all().order_by('-timestamp')
     page = request.GET.get('page')
