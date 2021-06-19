@@ -41,7 +41,7 @@ class PostForm(forms.ModelForm):
         widget = {
             'subject': forms.TextInput(),
             'content': forms.Textarea(),
-            'category': forms.Select(list(Category.objects.values('name').distinct().reverse())),
+            'category': forms.Select(['art', 'architecture', 'sustainability']),
         }
 
 
