@@ -88,7 +88,9 @@ DATABASES = {
 # DATABASES['default'].update(db_from_env)
 #
 
-import dj_database_url
+SERVER_EMAIL = 'samtomann2@gmail.com'
+ADMINS = [('Samuel', 'samtomann@gmail.com')]
+
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 DATABASES['default']['CONN_MAX_AGE'] = 500
@@ -97,7 +99,7 @@ DATABASES['default']['CONN_MAX_AGE'] = 500
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
