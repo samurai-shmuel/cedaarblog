@@ -3,8 +3,6 @@ from django.contrib.auth import authenticate
 from django import forms
 from .models import User, Posts, Category, Comments
 
-choices = list(Category.objects.values('name').distinct().reverse())
-
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(max_length=80, help_text="Required. Add a valid email address")
@@ -43,7 +41,7 @@ class PostForm(forms.ModelForm):
         widget = {
             'subject': forms.TextInput(),
             'content': forms.Textarea(),
-            'category': forms.Select(choices),
+            'category': forms.Select(list(Category.objects.values('name').distinct().reverse())),
         }
 
 
