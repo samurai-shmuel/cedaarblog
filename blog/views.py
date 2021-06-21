@@ -40,17 +40,8 @@ def paginate_query(queryset, pg):
     return posts
 
 
-class Switch:
-    def __init__(self):
-        categories = map(str, Category.objects.all())
-        self.diction = dict.fromkeys(categories, False)
-
-
-switch = Switch()
-diction = switch.diction
-
-
 def posts(request):
+    categories = Category.objects.all()
     context = {}
     queryset = Posts.objects.all().order_by('-timestamp')
     page = request.GET.get('page')
@@ -58,22 +49,23 @@ def posts(request):
         searched = request.GET.get("searched")
         queryset = queryset.filter(Q(subject__contains=searched) | Q(author_str__contains=searched))
     if request.POST.get("category"):
-        category = request.POST.get('category')
-        diction[category] = not diction[category]
-        if diction['uncategorized']:
+        recv = request.POST.get('category')
+        category = Category.objects.get(name=recv)
+        category.is_active = not category.is_active
+        category.save()
+        if category.is_active and category.name=='uncategorized':
             queryset = Posts.objects.filter(category=None).order_by('-timestamp')
         else:
-            for key in diction.keys():
-                if diction[key]:
-                    queryset = queryset.filter(category__name=key)
+            for item in categories:
+                if item.is_active:
+                    queryset = queryset.filter(category__name=item.name)
         context['posts'] = paginate_query(queryset, page)
     else:
-        for key in diction.keys():
-            if diction[key]:
-                diction[key] = False
+        for item in categories:
+            if item.is_active:
+                item.is_active = False
     context['posts'] = paginate_query(queryset, page)
-    context['categories'] = diction
-    request.session["diction"] = diction
+    context['categories'] = categories
     return render(request, 'posts.html', context)
 
 
@@ -168,10 +160,23 @@ def register(request):
     return render(request, 'register.html', context)
 
 
+def again(request):
+    # nexte = request.GET.get('next', '/')
+    # send_mail()
+    # return HttpResponseRedirect(nexte)
+    return render(request, 'confotp.html')
+
+
 def confirm(request):
     context = {}
+    if request.POST:
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(email=email, password=password)
+        if user:
+            user = User.objects.get(email=email)
+            send_mail(user)
     return render(request, 'confotp.html', context)
-
 
 def email_post(pk):
     post = Posts.objects.get(pk=pk)

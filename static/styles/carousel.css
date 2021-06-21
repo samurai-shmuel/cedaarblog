@@ -141,7 +141,7 @@ a::after{
 }
 
 .author-text p{
-    text-align: justify;
+    text-align: left;
     color:rgb(183, 238, 220);
     font-size: 1.2em;
 }
@@ -172,6 +172,10 @@ a::after{
         .author-text {
             max-width: 450px;
             padding: 1.3em;
+        }        
+
+        .author-text p{
+            text-align: justify;
         }        
 
         #contact{

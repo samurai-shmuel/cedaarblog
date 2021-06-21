@@ -43,13 +43,13 @@
         </form>    
     </div>
     <div id="catsearch">
-        {% for category, value in categories.items %}
+        {% for item in categories %}
         <form method="POST" action="/posts/">
             {% csrf_token %}
-            {% if value %}
-            <button class="category" style="background-color: rgb(17, 194, 155);" type="submit" name="category" value="{{ category}}">{{ category }}</button>
+            {% if item.is_active %}
+            <button class="category" style="background-color: rgb(17, 194, 155);" type="submit" name="category" value="{{item.name}}">{{item.name}}</button>
             {% else %}
-            <button class="category" type="submit" name="category" value="{{ category}}">{{ category }}</button>
+            <button class="category" type="submit" name="category" value="{{item.name}}">{{ item.name }}</button>
             {% endif %}
         </form>    
         {% endfor %}    

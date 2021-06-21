@@ -29,8 +29,29 @@
             <h4 style="color:rgb(113, 192, 133); font-size: 24px;">{{ user }}, your account is confirmed!</h4>
             {% else %}
             <h4 style="color:rgb(221, 140, 140); font-size: 24px;">Error, invalid token!</h4>
+            <br>
+            <br>
+            <form method="POST">
+                {% csrf_token %}
+                <input type='text' name='email' placeholder="Email">
+                <br>
+                <input type='password' name="password" placeholder="Password">
+                <br>
+                <br>
+                <div id="create-button">
+                    <button type="submit" style="font-size:0.8em; width:8em;">Send Again</button>
+                </div>
+            <form>
             {% endif %}    
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block vuescript %}
+<script>
+    if ( window.history.replaceState ) {
+      window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
 {% endblock %}
