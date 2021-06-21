@@ -45,7 +45,7 @@ button{
     font-weight: bold;
     border-radius: 9px;
     font-family: 'Raleway';
-    background-color: rgb(12, 107, 190);
+    background-color: rgb(8, 133, 122);
     color: #fff;
     padding: 10px;
     cursor: pointer;
@@ -80,7 +80,7 @@ button{
 }
 
 button:hover{
-    background-color: rgb(76, 164, 241);
+    background-color: rgb(79, 179, 170);
 }
 
 .cancel{

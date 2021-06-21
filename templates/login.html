@@ -12,12 +12,6 @@
 <li class="nav-item" id="about-screen"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>
 {% endblock %}
 
-{% block nav-mobile %}
-<li class="nav-mobile" id="about-mobile"><a href="/#contact">About</a></li>
-<li class="nav-mobile" ><a href="/posts/">Blog</a></li>
-<li class="nav-mobile" id="about-mobile"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>                            
-{% endblock %}
-
 {% block content %}
 <img class="banner" src="{% static 'images/fractal.png' %}" alt="cedaarlogo">
 <div id="signup" class="hand">

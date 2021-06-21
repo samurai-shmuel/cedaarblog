@@ -15,16 +15,6 @@
 <li class="nav-item" id="about-screen"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>
 {% endif %}
 {% endblock %}
-{% block nav-mobile %}
-<li class="nav-mobile" id="about-mobile"><a href="/#contact">Editors</a></li>
-<li class="nav-mobile" ><a href="/posts/">Blog</a></li>      
-{% if request.user.is_authenticated %}                            
-<li class="nav-mobile" id="about-mobile"><a href="{% url 'logout' %}?next={{ request.path|urlencode }}">Logout</a></li>
-{% else %}
-<li class="nav-mobile" id="about-mobile"><a href="{% url 'login' %}?next={{ request.path|urlencode }}">Login</a></li>
-<li class="nav-mobile" id="about-mobile"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>
-{% endif %}
-{% endblock %}
 
 
 {% block content %}

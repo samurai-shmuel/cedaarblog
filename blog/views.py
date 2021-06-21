@@ -160,23 +160,20 @@ def register(request):
     return render(request, 'register.html', context)
 
 
-def again(request):
-    # nexte = request.GET.get('next', '/')
-    # send_mail()
-    # return HttpResponseRedirect(nexte)
-    return render(request, 'confotp.html')
-
-
 def confirm(request):
     context = {}
     if request.POST:
         email = request.POST.get('email')
         password = request.POST.get('password')
         user = authenticate(email=email, password=password)
+        print(user)
         if user:
-            user = User.objects.get(email=email)
-            send_mail(user)
+            inac_user = User.objects.get(email=email)
+            print(inac_user)
+            send_email(inac_user)
+            redirect('login')
     return render(request, 'confotp.html', context)
+
 
 def email_post(pk):
     post = Posts.objects.get(pk=pk)

@@ -19,19 +19,6 @@
 <li class="nav-item" id="about-screen"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>
 {% endif %}
 {% endblock %}
-{% block nav-mobile %}
-<li class="nav-item" id="about-mobile"><a href="/#contact">Editors</a></li>
-<li class="nav-item search-link"><a >Search</a></li>
-{% if request.user.is_authenticated %}                            
-<li class="nav-item" id="about-mobile"><a href="{% url 'logout' %}?next={{ request.path|urlencode }}">Logout</a></li>
-{% else %}
-<li class="nav-item" id="about-mobile"><a href="{% url 'login' %}?next={{ request.path|urlencode }}">Login</a></li>
-<li class="nav-item" id="about-mobile"><a href="{% url 'register' %}?next={{ request.path|urlencode }}">Register</a></li>
-{% endif %}
-{% if request.user.is_staff %}                            
-<li class="nav-item "><a href="{% url 'create' %}">Create</a></li>                            
-{% endif %}
-{% endblock %}
 
 {% block fixed %}
 <div id="filter">
