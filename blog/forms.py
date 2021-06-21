@@ -1,7 +1,23 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import authenticate
 from django import forms
-from .models import User, Posts, Category, Comments
+from .models import User, Posts, Comments
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Posts
+        fields = ('subject', 'thumbnail','content','category')
+
+        widget = {
+            'subject': forms.TextInput(),
+            'content': forms.Textarea(),
+            'category': forms.SelectMultiple(),
+        }
+
+    def clean_category(self):
+        category = self.cleaned_data.get('category')
+        return category
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -31,18 +47,6 @@ class UserLoginForm(forms.ModelForm):
             password = self.cleaned_data['password']
             if not authenticate(email=email, password=password):
                 raise forms.ValidationError('Invalid Login')
-
-
-class PostForm(forms.ModelForm):
-    class Meta:
-        model = Posts
-        fields = ('subject', 'thumbnail', 'content', 'category')
-
-        widget = {
-            'subject': forms.TextInput(),
-            'content': forms.Textarea(),
-            'category': forms.Select(['art', 'architecture', 'sustainability']),
-        }
 
 
 class CommentForm(forms.ModelForm):

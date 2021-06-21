@@ -40,9 +40,17 @@ def paginate_query(queryset, pg):
     return posts
 
 
+class Switch:
+    def __init__(self):
+        categories = map(str, Category.objects.all())
+        self.diction = dict.fromkeys(categories, False)
+
+
+switch = Switch()
+diction = switch.diction
+
+
 def posts(request):
-    categories = map(str, Category.objects.all())
-    diction = dict.fromkeys(categories, False)
     context = {}
     queryset = Posts.objects.all().order_by('-timestamp')
     page = request.GET.get('page')
@@ -65,6 +73,7 @@ def posts(request):
                 diction[key] = False
     context['posts'] = paginate_query(queryset, page)
     context['categories'] = diction
+    request.session["diction"] = diction
     return render(request, 'posts.html', context)
 
 
@@ -192,6 +201,9 @@ def postcreate(request):
         obj.author = request.user
         obj.author_str = obj.author
         obj.save()
+        category = form.clean_category()
+        for item in category.iterator():
+            obj.category.add(item)
         pk = obj.pk
         email_post(pk)
         return redirect('postview', pk=pk)
