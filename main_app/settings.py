@@ -163,7 +163,7 @@ EMAIL_FROM_ADDRESS = config('EMAIL_HOST_USER')
 EMAIL_MAIL_SUBJECT = 'Activate your account at CedaarBlog'
 EMAIL_MAIL_HTML = 'email.html'
 EMAIL_MAIL_PLAIN = 'email.txt'
-EMAIL_TOKEN_LIFE = 300
+EMAIL_TOKEN_LIFE = 60*60
 EMAIL_PAGE_TEMPLATE = 'confotp.html'
 EMAIL_PAGE_DOMAIN = 'https://cedaarblog.herokuapp.com/'
 

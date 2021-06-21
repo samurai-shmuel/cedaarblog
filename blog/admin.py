@@ -11,7 +11,7 @@ class CustomUserAdmin(UserAdmin):
     model = User
     search_fields = ('email', 'firstname', 'lastname', 'last_login', 'start_Date')
     readonly_fields = ('last_login', 'start_Date')
-    list_display = ('email', 'firstname', 'lastname', 'is_staff', 'is_active', 'is_admin', 'last_login', 'start_Date')
+    list_display = ('email', 'firstname', 'lastname', 'is_staff', 'is_active', 'is_admin', 'last_login', 'start_Date', 'about',)
     list_filter = ('is_staff', 'is_active', 'is_admin')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
