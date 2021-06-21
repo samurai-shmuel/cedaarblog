@@ -162,17 +162,23 @@ def register(request):
 
 def confirm(request):
     context = {}
-    if request.POST:
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user = authenticate(email=email, password=password)
-        print(user)
-        if user:
-            inac_user = User.objects.get(email=email)
-            print(inac_user)
-            send_email(inac_user)
-            redirect('login')
     return render(request, 'confotp.html', context)
+
+
+# def again(request):
+#     message = "Come"
+#     if request.POST:
+#         email = request.POST.get('email')
+#         password = request.POST.get('password')
+#         user = authenticate(email=email, password=password)
+#         if user:
+#             inac_user = User.objects.get(email=email)
+#             send_email(inac_user)
+#             redirect('index')
+#         else:
+#             message = "Invalid Information"
+#     context = {"message":message}
+#     return render(request, 'confotp.html', context)
 
 
 def email_post(pk):

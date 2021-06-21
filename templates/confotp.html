@@ -24,21 +24,22 @@
             {% if success %}
             <h4 style="color:rgb(113, 192, 133); font-size: 24px;">{{ user }}, your account is confirmed!</h4>
             {% else %}
-            <h4 style="color:rgb(221, 140, 140); font-size: 24px;">Error, invalid token!</h4>
+            <h4 style="color:rgb(221, 140, 140); font-size: 24px;">Sorry, your account is left unactivated!</h4>
             <br>
-            <br>
-            <form method="POST">
+            {% endif %}    
+            <!-- {% if message %}
+            <p style="color:rgb(178, 231, 231);">{{message}}</p>
+            <form method="post">
                 {% csrf_token %}
-                <input type='text' name='email' placeholder="Email">
+                <input name="email" type="email" placeholder="Email">
                 <br>
-                <input type='password' name="password" placeholder="Password">
-                <br>
+                <input name="password" type="password" placeholder="Password">
                 <br>
                 <div id="create-button">
-                    <button type="submit" style="font-size:0.8em; width:8em;">Send Again</button>
-                </div>
-            <form>
-            {% endif %}    
+                    <button type="submit">Send Email</button>
+                </div>        
+            </form>
+            {% endif %} -->
         </div>
     </div>
 </div>

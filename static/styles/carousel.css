@@ -18,6 +18,33 @@ a:hover{
     color: rgb(3, 121, 81);
 }
 
+#create-button button{
+    width: 11em;
+    margin: 0.6em;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 9px;
+    font-family: 'Raleway';
+    background-color: rgb(8, 133, 122);
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s ease;
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.4);
+}
+
+    
+#create-button{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}    
+
+#create-button button:hover{
+    background-color: rgb(79, 179, 170);
+}
+
 a::after{
     color: rgb(36, 173, 128);
 }
@@ -52,6 +79,7 @@ a::after{
 
 #latest{
     display: flex;
+    flex-direction: column;
     padding: 1em;
 }
 
@@ -165,6 +193,10 @@ a::after{
             text-orientation:upright;
         }
 
+        #latest{
+            flex-direction: row;
+        }
+
         .author{
             margin: 0.9em;
         }
@@ -187,11 +219,12 @@ a::after{
         }
     }
 
-@media only screen and (max-width: 1368px) and (orientation: landscape)
+@media only screen and (min-width: 1100px) and (orientation: portrait)
 {
     #latest h1{
         letter-spacing: 1px;
-        writing-mode:initial;
+        writing-mode:vertical-lr; 
         text-transform: uppercase;
+        text-orientation:upright;
     }
 }

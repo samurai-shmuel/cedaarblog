@@ -36,7 +36,7 @@
         </div>  
     </div>
 </section>
-<div id="latest" class="hand animate__animated animate__slideInUp">
+<div id="latest" class="hand">
     <h1>Recent</h1>
     <div class="post-parent">
         {% for post in latest %}
@@ -82,7 +82,10 @@
     <div class="weltext">
         <h1> Hi {{request.user.firstname}}, welcome to CedaarBlog </h1>
         <p> We are pleased to have you here. We will have introspective posts on our blog, the prominent topics being sustainability and design. Your comments are valuable so long as they further healthy discussion and your criticisms are limited to ideas and concepts. Follow a peaceful coexistence with all fellow humans.</p>    
-        <p> If you want to change your password, do so <a href="/password-reset/" style="color:aquamarine;">here</a></p>
+        <br>
+        <div id="create-button">
+            <button type="submit"><a href="/password-reset/" style="color:aquamarine;">Change Password</a></button>
+        </div>
     </div>
 </div>
 {% endif %}

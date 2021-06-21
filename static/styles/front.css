@@ -138,7 +138,7 @@
 
 @media only screen and (orientation: portrait) {   
     .sh-container{
-        padding: 10rem 1rem;
+        padding: 11rem 1rem;
         position: relative;
         top: 0em;
     }
