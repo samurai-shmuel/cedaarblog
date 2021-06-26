@@ -12,7 +12,7 @@ from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.views.generic import UpdateView, DeleteView
-from .models import Posts, Comments, Category, User
+from .models import Posts, Comments, Category, User, Visitors
 from .forms import CustomUserCreationForm, UserLoginForm, PostForm, CommentForm
 
 
@@ -107,7 +107,22 @@ def postview(request, pk):
                                                                                                commenter=user)
     else:
         comments = Comments.objects.filter(post=post, viewable=True)
-    context = {"post": post, "comments": comments, "form": form, "liked": liked_by}
+
+    def get_ip(request):
+        adress = request.META.get('HTTP_X_FORWARDED_FOR')
+        if adress:
+            ip = adress.split(',')[-1].strip()
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip
+
+    ip = get_ip(request)
+    visitor = Visitors(user=ip, post=post)
+    check = Visitors.objects.filter(user=ip).filter(post=post)
+    if not check:
+        visitor.save()
+    visits = Visitors.objects.all()
+    context = {"post": post, "comments": comments, "form": form, "liked": liked_by, "visits":visits}
     return render(request, 'blog.html', context)
 
 

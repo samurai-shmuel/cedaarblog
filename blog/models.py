@@ -94,3 +94,12 @@ class Comments(models.Model):
 
     def __str__(self):
         return f"{self.post} | {self.commenter_str}"
+
+
+class Visitors(models.Model):
+    user = models.TextField(default=None)
+    post = models.ForeignKey(Posts, related_name="visited", on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.user
+

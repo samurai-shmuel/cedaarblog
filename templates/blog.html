@@ -46,7 +46,7 @@
                 {% endif %}
                 <a href="#bottom"><button class="react" type="submit" name="post_id" value="{{ post.pk }}"><i class="fa fa fa-comment" style="font-size:24px;"><small style="font-family:sans-serif;margin-left:1px;">{{ comments.count }}</small></i></button></a>
             </div>                
-            <p>By {{ post.author_str }} | {{ post.timestamp }}</p>
+            <p>By {{ post.author_str }} | {{ post.timestamp }} {% if post.author == request.user %}| Visits: {{visits.count}} {% endif %}</p>
         </div>
         <p>{{ post.content|safe }}</p>
         <br>
