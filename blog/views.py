@@ -121,7 +121,7 @@ def postview(request, pk):
     check = Visitors.objects.filter(user=ip).filter(post=post)
     if not check:
         visitor.save()
-    visits = Visitors.objects.all()
+    visits = Visitors.objects.filter(post=post)
     context = {"post": post, "comments": comments, "form": form, "liked": liked_by, "visits":visits}
     return render(request, 'blog.html', context)
 
