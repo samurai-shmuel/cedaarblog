@@ -24,7 +24,6 @@ urlpatterns = [
     path("password-reset/done/", auth_views.PasswordResetDoneView.as_view(template_name='reset-done.html'), name="password_reset_done"),
     path("passwordconfirm/<uidb64>/<token>/", auth_views.PasswordResetConfirmView.as_view(template_name='resetconfirm.html'),
          name="password_reset_confirm"),
-    # path("again/", views.again, name="again"),
     path("password-reset-complete/", auth_views.PasswordResetCompleteView.as_view(template_name='resetcomplete.html'), name="password_reset_complete"),
     path('email/', include(email_urls)),
     path('confirm/', views.confirm, name="confirm"),
